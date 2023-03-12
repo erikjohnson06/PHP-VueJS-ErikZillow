@@ -17,9 +17,23 @@ class IndexController extends Controller
                 ]
                 );
         */
+/*
+        //$listing = Listing::find(10);
 
-        dd(Listing::where('beds', '>', 4)->where('area', '>', 200)->orderBy('beds', 'desc')->get());
+        $listing = new Listing;
+        $listing->beds = 2;
+        $listing->baths = 3;
+        $listing->area = 2700;
+        $listing->city = "Knoxville";
+        $listing->address_1 = "733 Baldwin Station Lane";
+        $listing->address_2 = "";
+        $listing->zip = 37922;
+        $listing->price = 272000;
+        $listing->save();
 
+        dd($listing );
+        //Listing::where('beds', '>', 4)->where('area', '>', 200)->orderBy('beds', 'desc')->get()
+*/
         return Inertia::render(
                 'Index/Index',
                 [

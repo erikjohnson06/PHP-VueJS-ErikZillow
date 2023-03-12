@@ -16,15 +16,22 @@ class ListingFactory extends Factory
      */
     public function definition(): array
     {
+
+        $states = ['TN', 'KY', 'GA', 'SC', 'NC'];
+
+        shuffle($states);
+
         return [
             'beds' => fake()->numberBetween(1,7),
             'baths' => fake()->numberBetween(1,7),
-            'area' => fake()->numberBetween(100,500),
+            'area' => fake()->numberBetween(2000,5000),
+            'address' => fake()->numberBetween(10,200) . ' ' . fake()->streetName(),
             'city' => fake()->city(),
             'zip' => fake()->postcode(),
-            'address_1' => fake()->numberBetween(10,200),
-            'address_2' => fake()->streetName(),
-            'price' => fake()->numberBetween(50000,2000000)
+            'state' => $states[0],
+            'price' => fake()->numberBetween(50000,2000000),
+            'status_id' => 1,
+            'comments' => ''
         ];
     }
 }

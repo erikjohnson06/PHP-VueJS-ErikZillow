@@ -12,18 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('listings', function (Blueprint $table) {
+
             $table->id();
 
             $table->unsignedTinyInteger("beds");
             $table->unsignedTinyInteger("baths");
             $table->unsignedSmallInteger("area");
 
-            $table->tinyText("address_1");
-            $table->tinyText("address_2");
+            $table->tinyText("address");
+
             $table->tinyText("city");
             $table->tinyText("zip");
+            $table->tinyText("state");
 
             $table->unsignedFloat("price", 10);
+
+            $table->tinyInteger("status_id")->default(1); //->comment("1=Pending,2=Approved")
+
+            $table->text("comments")->nullable();
 
             $table->timestamps();
         });
