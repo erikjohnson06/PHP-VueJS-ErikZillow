@@ -5,6 +5,9 @@
 
             <div>
                 <Link :href="route('listing.show', {id : item.id})">
+
+                <Price :price="item.price" class="text-2xl font-bold" />
+
                 <ListingSpace :listing="item" class="text-lg" />
                 <ListingAddress :listing="item" class="text-gray-500" />
                 </Link>
@@ -26,6 +29,7 @@
     import {Link} from '@inertiajs/vue3';
     import ListingSpace from '../../Components/ListingSpace.vue';
     import ListingAddress from '../../Components/ListingAddress.vue';
+    import Price from '../../Components/Price.vue';
     import Box from '../../Components/UI/Box.vue';
 
     defineProps({
