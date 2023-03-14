@@ -4,8 +4,6 @@
 
         <Link href="/show">Show Page</Link>
 
-        <div>The message is: {{ message }}</div>
-
 </template>
 
 <script setup>

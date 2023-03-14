@@ -1,10 +1,20 @@
 <template>
 
-    <div v-for="listing in listings" :key="listing.id">
+    <div v-for="item in listings" :key="item.id">
 
-        <Link :href="`/listing/${listing.id}`">
-            <ListingAddress :listing="listing" />
-        </Link>
+        <div>
+            <Link :href="route('listing.show', {id : item.id})">
+                <ListingAddress :listing="item" />
+            </Link>
+        </div>
+
+        <div>
+            <Link :href="route('listing.edit', {id : item.id})">Edit</Link>
+        </div>
+
+        <div>
+            <Link :href="route('listing.delete', {id : item.id})" method="DELETE" as="button">Delete</Link>
+        </div>
     </div>
 </template>
 
@@ -13,7 +23,7 @@
     import {Link} from '@inertiajs/vue3'
     import ListingAddress from '../../Components/ListingAddress.vue'
 
-    defineProps({
-        listings: Array
-    });
+            defineProps({
+                listings: Array
+            });
 </script>

@@ -2,7 +2,7 @@
 
         <div>Show</div>
 
-        <Link href="/">Main Page</Link>
+        <Link href="/listings">Main Page</Link>
 
 </template>
 
