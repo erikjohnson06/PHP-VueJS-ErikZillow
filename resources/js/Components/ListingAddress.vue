@@ -2,8 +2,6 @@
 
     <span>
         {{ listing.address }} {{ listing.city }}, {{ listing.state }}
-
-        ${{ listing.price }}
     </span>
 
 </template>
