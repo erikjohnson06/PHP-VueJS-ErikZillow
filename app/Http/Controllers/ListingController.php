@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 //use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Inertia\Response;
+use Inertia\Response as InertiaResponse;
 use Inertia\Inertia;
 
 class ListingController extends Controller {
@@ -18,14 +18,22 @@ class ListingController extends Controller {
      *
      * @return Inertia\Inertia\Response
      */
-    public function index(): Response {
+    public function index(Request $request): InertiaResponse {
 
-        $listings = Listing::latest()->get();
+        $filters = $request->only([
+            'priceFrom', 'priceTo', 'beds', 'baths', 'areaFrom', 'areaTo'
+        ]);
+
+        $listings = Listing::latest()
+            ->filter($filters) //Customer local scope method for filtering (see Listing model)
+            ->paginate(10)
+            ->withQueryString();
 
         return Inertia::render(
                 'Listing/Index',
                 [
-                    'listings' => $listings
+                    'listings' => $listings,
+                    'filters' => $filters
                 ]
         );
     }
@@ -35,14 +43,15 @@ class ListingController extends Controller {
      *
      * @return Inertia\Inertia\Response
      */
-    public function create(): Response {
-
-        //$this->authorize('create', Listing::class);
+    public function create(): InertiaResponse {
         return Inertia::render('Listing/Create');
     }
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse {
 
@@ -103,7 +112,7 @@ class ListingController extends Controller {
      * @param int $id
      * @return Inertia\Inertia\Response
      */
-    public function show(int $id): Response {
+    public function show(int $id): InertiaResponse {
 
         $listing = Listing::findOrFail($id);
 
@@ -203,5 +212,4 @@ class ListingController extends Controller {
 
         return redirect()->back()->with('success', 'Listing was deleted');
     }
-
 }
