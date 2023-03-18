@@ -2,7 +2,7 @@
 
     <header class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 w-full">
 
-        <div class="container mx-auto">
+        <div class="container mx-auto p-4 w-full">
             <nav class="p-4 flex items-center justify-between">
                 <div class="text-lg font-medium">
                     <Link :href="route('listings.all')">Listings</Link>
@@ -10,8 +10,16 @@
                 <div class="text-xl text-indigo-600 dark:text-indigo-300 font-bold text-center">
                     <Link :href="route('listings.all')">ErikZillow</Link>
                 </div>
-                <div>
+                <div v-if="user" class="flex items-center gap-4">
+                    <div class="text-sm text-gray-500">{{ user.name }}</div>
                     <Link :href="route('listing.create')" class="button-primary">+ New Listing</Link>
+                    <div>
+                        <Link :href="route('logout')" as='button'>Logout</Link>
+                    </div>
+                </div>
+                <div v-else class="flex items-center gap-2">
+                    <Link :href="route('register')">Register</Link>
+                    <Link :href="route('login')">Sign In</Link>
                 </div>
             </nav>
         </div>
@@ -40,5 +48,9 @@
 
     const flashSuccess = computed(
         () => usePage().props.flash.success
+    );
+
+    const user = computed(
+        () => usePage().props.user
     );
 </script>

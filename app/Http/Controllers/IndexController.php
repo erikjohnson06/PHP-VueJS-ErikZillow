@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class IndexController extends Controller
@@ -34,6 +35,8 @@ class IndexController extends Controller
         dd($listing );
         //Listing::where('beds', '>', 4)->where('area', '>', 200)->orderBy('beds', 'desc')->get()
 */
+        //dd(Auth::user());
+
         return Inertia::render(
                 'Index/Index',
                 [

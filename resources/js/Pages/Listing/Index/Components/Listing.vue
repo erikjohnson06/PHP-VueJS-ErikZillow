@@ -17,24 +17,24 @@
             </Link>
         </div>
 
-        <div>
+        <div v-if="user">
             <Link :href="route('listing.edit', {id : item.id})">Edit</Link>
         </div>
 
-        <div>
-            <Link :href="route('listing.delete', {id : item.id})" method="DELETE" as="button">Delete</Link>
+        <div v-if="user">
+            <Link :href="route('listing.delete', {id : item.id})" method="delete" as="button">Delete</Link>
         </div>
     </Box>
 </template>
 
 <script setup>
 
-    import {Link} from '@inertiajs/vue3';
+    import {Link, usePage} from '@inertiajs/vue3';
+    import {computed} from 'vue';
     import ListingSpace from '@/Components/ListingSpace.vue';
     import ListingAddress from '@/Components/ListingAddress.vue';
     import Price from '@/Components/Price.vue';
     import Box from '@/Components/UI/Box.vue';
-
     import {useMonthlyPayment} from '@/Composables/useMonthlyPayment';
 
     const props = defineProps({
@@ -42,4 +42,8 @@
     });
 
     const { monthlyPayment } = useMonthlyPayment(props.item.price, 3.0, 30);
+
+    const user = computed(
+        () => usePage().props.user
+    );
 </script>

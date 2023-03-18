@@ -21,10 +21,10 @@ class ListingController extends Controller {
         $listings = Listing::latest()->get();
 
         return Inertia::render(
-                        'Listing/Index',
-                        [
-                            'listings' => $listings
-                        ]
+                'Listing/Index',
+                [
+                    'listings' => $listings
+                ]
         );
     }
 
@@ -32,7 +32,6 @@ class ListingController extends Controller {
      * Show the form for creating a new resource.
      */
     public function create() {
-
         return Inertia::render('Listing/Create');
     }
 
@@ -40,8 +39,6 @@ class ListingController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
-        //dd($request->all());
-        //die("Hello?");
 
         $request->validate([
             "beds" => "required|numeric|min:0|max:20",
@@ -53,13 +50,12 @@ class ListingController extends Controller {
             "state" => "required|string",
             "price" => "required|integer|min:1|max:20000000",
             "comments" => "nullable|string"
-                ], [
+            ], [
             "beds.required" => "Please Enter the Number of Beds",
             "baths.required" => "Please Enter the Number of Baths",
             "area.required" => "Please Enter the Area (sq. footage)"
         ]);
 
-        /**/
         Listing::insert([
             "beds" => $request->beds,
             "baths" => $request->baths,
@@ -88,10 +84,10 @@ class ListingController extends Controller {
         $listing = Listing::findOrFail($id);
 
         return Inertia::render(
-                        'Listing/Show',
-                        [
-                            'listing' => $listing
-                        ]
+                'Listing/Show',
+                [
+                    'listing' => $listing
+                ]
         );
     }
 
@@ -103,10 +99,10 @@ class ListingController extends Controller {
         $listing = Listing::findOrFail($id);
 
         return Inertia::render(
-                        'Listing/Edit',
-                        [
-                            'listing' => $listing
-                        ]
+                'Listing/Edit',
+                [
+                    'listing' => $listing
+                ]
         );
     }
 
@@ -129,7 +125,7 @@ class ListingController extends Controller {
             "state" => "required|string",
             "price" => "required|integer|min:1|max:20000000",
             "comments" => "nullable|string"
-                ], [
+            ], [
             "beds.required" => "Please Enter the Number of Beds",
             "baths.required" => "Please Enter the Number of Baths",
             "area.required" => "Please Enter the Area (sq. footage)"
@@ -159,7 +155,7 @@ class ListingController extends Controller {
     public function destroy(int $id) {
 
         Listing::findOrFail($id)->delete();
-        
+
         return redirect()->back()->with('success', 'Listing was deleted');
     }
 
