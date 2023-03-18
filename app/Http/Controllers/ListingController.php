@@ -6,6 +6,7 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 //use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Response;
 use Inertia\Inertia;
 
@@ -32,6 +33,8 @@ class ListingController extends Controller {
      * Show the form for creating a new resource.
      */
     public function create() {
+
+        //$this->authorize('create', Listing::class);
         return Inertia::render('Listing/Create');
     }
 
@@ -56,6 +59,22 @@ class ListingController extends Controller {
             "area.required" => "Please Enter the Area (sq. footage)"
         ]);
 
+        $request->user()->listings()->create([
+            "beds" => $request->beds,
+            "baths" => $request->baths,
+            "area" => $request->area,
+            "address" => $request->address,
+            "city" => $request->city,
+            "state" => $request->state,
+            "zip" => $request->zip,
+            "price" => $request->price,
+            "comments" => $request->comments,
+            "status_id" => 1,
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        /*
         Listing::insert([
             "beds" => $request->beds,
             "baths" => $request->baths,
@@ -66,9 +85,11 @@ class ListingController extends Controller {
             "zip" => $request->zip,
             "price" => $request->price,
             "status_id" => 1,
+            "posted_by" => Auth::user()-id,
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ]);
+        */
 
         return redirect()->route('listings.all')->with('success', 'Listing was created');
     }
@@ -82,6 +103,12 @@ class ListingController extends Controller {
     public function show(int $id): Response {
 
         $listing = Listing::findOrFail($id);
+
+        //if (Auth::user()->cannot('view', $listing)){
+        //    abort(403);
+        //}
+
+        //$this->authorize('view', $listing);
 
         return Inertia::render(
                 'Listing/Show',
@@ -143,6 +170,8 @@ class ListingController extends Controller {
             "zip" => $request->zip,
             "price" => $request->price,
             "status_id" => 1,
+            "posted_by" => Auth::user()-id,
+            "comments" => $request->comments,
             "updated_at" => Carbon::now()
         ]);
 

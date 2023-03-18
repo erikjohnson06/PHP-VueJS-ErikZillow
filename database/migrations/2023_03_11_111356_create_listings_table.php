@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -28,6 +30,11 @@ return new class extends Migration
             $table->unsignedFloat("price", 10);
 
             $table->tinyInteger("status_id")->default(1); //->comment("1=Pending,2=Approved")
+
+            $table->foreignIdFor(User::class, 'posted_by')
+                ->constrained('users')
+                ->restrictOnUpdate()
+                ->restrictOnDelete();
 
             $table->text("comments")->nullable();
 
