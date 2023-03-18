@@ -13,10 +13,18 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
+
+    /**
+     * @return InertiaResponse
+     */
     public function create(): InertiaResponse {
         return Inertia::render('User/Register');
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function store(Request $request) : RedirectResponse {
 
         $request->validate([

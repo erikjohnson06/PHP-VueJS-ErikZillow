@@ -19,11 +19,13 @@ class IndexController extends Controller
                 ]
                 );
         */
-/**/
-        $listing = Listing::find(10);
+/*
+        //$listing = Listing::find(10);
 
-        //$user = User::find(1);
+        $user = User::find(1);
 
+        dd($user->listings()->where('beds', '>=', 3)->get());
+*/
         /*
         $listing = new Listing;
         $listing->beds = 2;
@@ -38,14 +40,14 @@ class IndexController extends Controller
         $listing->status_id = 1;
         //$listing->posted_by = $user->id;
         //$listing->save();
-*/
+
         //$user->listings()->save($listing);
 
         $user2 = User::find(2);
 
         $listing->owner()->associate($user2);
         $listing->save();
-        
+    */
         //$listing->posted_by = $user2->id;
 
         //$user2->listings()->save($listing);
