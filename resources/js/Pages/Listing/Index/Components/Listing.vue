@@ -20,10 +20,6 @@
         <div v-if="user">
             <Link :href="route('listing.edit', {id : item.id})">Edit</Link>
         </div>
-
-        <div v-if="user">
-            <Link :href="route('listing.delete', {id : item.id})" method="delete" as="button">Delete</Link>
-        </div>
     </Box>
 </template>
 

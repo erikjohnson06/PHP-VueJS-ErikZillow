@@ -58,6 +58,18 @@ class IndexController extends Controller
 
         //dd(Auth::user());
 
+        /*
+        Listing::withTrashed()->where('id', 1)->restore();
+
+        $listing = Listing::withTrashed()->where('id', 1)->get();
+
+        dd($listing);
+
+        Listing::find(1)->forceDelete();
+*/
+        //$listing->delete();
+
+
         return Inertia::render(
                 'Index/Index',
                 [

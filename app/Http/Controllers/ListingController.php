@@ -194,22 +194,4 @@ class ListingController extends Controller {
 
         return redirect()->route('listings.all')->with('success', 'Listing was updated');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return RedirectResponse
-     */
-    public function destroy(int $id): RedirectResponse {
-
-        $listing = Listing::findOrFail($id);
-
-        if (Auth::user()->cannot('update', $listing)) {
-            return redirect()->route('listings.all')->with('success', 'Whoops.. You are not authorized to delete this listing');
-        }
-
-        $listing->delete();
-
-        return redirect()->back()->with('success', 'Listing was deleted');
-    }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\RealtorListingController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -44,7 +45,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/listing/store', 'store')->name('listing.store');
         Route::get('/listing/edit/{id}', 'edit')->name('listing.edit');
         Route::post('/listing/update', 'update')->name('listing.update');
-        Route::delete('/listing/delete/{id}', 'destroy')->name('listing.delete');
+    });
+
+    Route::prefix('realtor')->name('realtor.')->group(function () {
+        Route::resource('listing', RealtorListingController::class)
+            ->only(['index', 'destroy']);
+        //Route::delete('/listing/delete/{id}', 'destroy')->name('listing.delete');
     });
 });
-
