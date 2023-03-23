@@ -7,6 +7,7 @@
                 <input id="deleted"
                        type="checkbox"
                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                       v-model="filterForm.deleted"
                        />
                 <label for="deleted">Deleted</label>
             </div>
@@ -15,5 +16,22 @@
 </template>
 
 <script setup>
+    import { reactive, watch } from 'vue';
+    import { router } from '@inertiajs/vue3';
+    import { debounce } from 'lodash';
 
+    const filterForm = reactive({
+        deleted : false
+    });
+
+    watch(
+        filterForm,
+        debounce(
+            () => router.get(
+                route('realtor.listing.index'),
+                filterForm,
+                {preserveState: true, preserveScroll: true}
+            ), 500
+        )
+    );
 </script>
