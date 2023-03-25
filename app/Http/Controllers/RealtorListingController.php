@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Inertia\Response as InertiaResponse;
 use Inertia\Inertia;
 
@@ -27,7 +28,7 @@ class RealtorListingController extends Controller {
             ...$request->only(['by', 'order']) //"..." works like array_merge
         ];
 
-        //dd($filters);
+        Log::info(print_r($filters, true));
 
         return Inertia::render('Realtor/Index',
                 [

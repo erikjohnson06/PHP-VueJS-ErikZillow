@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\RealtorListingController;
+use App\Http\Controllers\RealtorListingImageController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -47,11 +48,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->withTrashed(); //Allows use with soft deleted models
 
         Route::name('listing.restore')
-            ->put('listing/{listing}/restore', [RealtorListingController::class, 'restore'])
-            ->withTrashed();
+            ->put('listing/{listing}/restore', [RealtorListingController::class, 'restore']);
 
         Route::name('listing.delete')
-            ->put('listing/{listing}/delete', [RealtorListingController::class, 'delete'])
+            ->put('listing/{listing}/delete', [RealtorListingController::class, 'delete']);
+
+        Route::resource('listing.image', RealtorListingImageController::class)
+            ->only(['create', 'store'])
             ->withTrashed();
     });
 });

@@ -15,52 +15,67 @@
 
                     <ListingAddress :listing="item" class="text-gray-500 "/>
                 </div>
-                <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
 
-                    <a
-                        class="button-outline text-xs font-medium"
-                         :href="route('listing.show', { id : item.id })"
-                        target="_blank"
-                       >
-                        Preview
-                    </a>
+                <section>
 
-                    <Link class="button-outline text-xs font-medium"
-                           :href="route('realtor.listing.edit', { id : item.id })"
-                          >
-                    Edit
-                    </Link>
+                    <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
 
-                    <div v-if="!item.deleted_at">
+                        <a
+                            class="button-outline text-xs font-medium"
+                            :href="route('listing.show', { id : item.id })"
+                            target="_blank"
+                            >
+                            Preview
+                        </a>
 
-                        <Link
-                            class="button-secondary text-xs font-medium"
-                            :href="route('realtor.listing.destroy', {listing : item.id})"
-                            method="delete"
-                            as="button">
+                        <Link class="button-outline text-xs font-medium"
+                              :href="route('realtor.listing.edit', { id : item.id })"
+                              >
+                        Edit
+                        </Link>
+
+                        <div v-if="!item.deleted_at">
+
+                            <Link
+                                class="button-secondary text-xs font-medium"
+                                :href="route('realtor.listing.destroy', {listing : item.id})"
+                                method="delete"
+                                as="button">
                             Unpublish
-                        </Link>
+                            </Link>
+                        </div>
+
+                        <div v-else>
+
+                            <Link
+                                class="button-primary text-xs font-medium"
+                                :href="route('realtor.listing.restore', {listing : item.id})"
+                                method="put"
+                                as="button">
+                            Publish
+                            </Link>
+
+                            <Link
+                                class="button-secondary text-xs font-medium ml-1"
+                                :href="route('realtor.listing.delete', {listing : item.id})"
+                                method="put"
+                                as="button">
+                            Delete
+                            </Link>
+                        </div>
                     </div>
 
-                    <div v-else>
-
+                    <div class="mt-2" v-if="!item.deleted_at">
                         <Link
-                            class="button-primary text-xs font-medium"
-                            :href="route('realtor.listing.restore', {listing : item.id})"
-                            method="put"
-                            as="button">
-                        Publish
-                        </Link>
-
-                        <Link
-                            class="button-secondary text-xs font-medium ml-1"
-                            :href="route('realtor.listing.delete', {listing : item.id})"
-                            method="put"
-                            as="button">
-                        Delete
+                            class="block w-full button-outline text-xs text-center font-medium"
+                            :href="route('realtor.listing.image.create', {listing : item.id})"
+                            >
+                        Images
                         </Link>
                     </div>
-                </div>
+                </section>
+
+
             </div>
         </Box>
     </section>
