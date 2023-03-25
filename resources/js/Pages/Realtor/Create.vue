@@ -130,16 +130,6 @@
     </form>
 </template>
 
-<style scoped>
-    label {
-        margin-right: 2em;
-    }
-
-    div {
-        padding: 2px
-    }
-</style>
-
 <script setup>
 
     import {useForm} from '@inertiajs/vue3';
@@ -158,6 +148,6 @@
         comments: null
     });
 
-    const create = () => form.post(route('listing.store'));
+    const create = () => form.post(route('realtor.listing.store'));
 
 </script>

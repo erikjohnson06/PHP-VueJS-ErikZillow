@@ -18,7 +18,7 @@
         </div>
 
         <div v-if="user">
-            <Link :href="route('listing.edit', {id : item.id})">Edit</Link>
+            <Link :href="route('realtor.listing.edit', {id : item.id})">Edit</Link>
         </div>
     </Box>
 </template>

@@ -94,16 +94,6 @@
     </form>
 </template>
 
-<style scoped>
-    label {
-        margin-right: 2em;
-    }
-
-    div {
-        padding: 2px
-    }
-</style>
-
 <script setup>
 
     import {useForm} from '@inertiajs/vue3';
@@ -127,6 +117,6 @@
         id: props.listing.id
     });
 
-    const update = () => form.post(route('listing.update'));
+    const update = () => form.put(route('realtor.listing.update', { listing: props.listing.id }));
 
 </script>

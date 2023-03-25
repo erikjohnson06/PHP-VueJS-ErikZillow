@@ -17,6 +17,10 @@ class Listing extends Model
         'beds', 'baths', 'area', 'address', 'city', 'zip', 'state', 'price', 'comments', 'status_id', 'posted_by'
     ];
 
+    protected $sortable = [
+        'created_at', 'updated_at', 'price', 'beds', 'baths', 'area'
+    ];
+
     /**
      * Map the posted_by field to a user id
      *
@@ -61,6 +65,14 @@ class Listing extends Model
             ->when(
                 $filters['deleted'] ?? false,
                 fn ($query, $value) => $query->withTrashed()
+            )
+            ->when(
+                $filters['by'] ?? false,
+                fn ($query, $value) =>
+                    //Ensure that sorted by column is valid
+                    !in_array($value, $this->sortable) ?
+                        $query :
+                        $query->orderBy($value, ($filters['order'] ?? "DESC"))
             );
     }
 }

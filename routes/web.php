@@ -40,16 +40,18 @@ Route::controller(ListingController::class)->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::controller(ListingController::class)->group(function () {
-        Route::get('/listing/create', 'create')->name('listing.create');
-        Route::post('/listing/store', 'store')->name('listing.store');
-        Route::get('/listing/edit/{id}', 'edit')->name('listing.edit');
-        Route::post('/listing/update', 'update')->name('listing.update');
-    });
-
     Route::prefix('realtor')->name('realtor.')->group(function () {
+
         Route::resource('listing', RealtorListingController::class)
-            ->only(['index', 'destroy']);
-        //Route::delete('/listing/delete/{id}', 'destroy')->name('listing.delete');
+            ->only(['index', 'edit', 'update', 'create', 'store', 'destroy'])
+            ->withTrashed(); //Allows use with soft deleted models
+
+        Route::name('listing.restore')
+            ->put('listing/{listing}/restore', [RealtorListingController::class, 'restore'])
+            ->withTrashed();
+
+        Route::name('listing.delete')
+            ->put('listing/{listing}/delete', [RealtorListingController::class, 'delete'])
+            ->withTrashed();
     });
 });
