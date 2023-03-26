@@ -70,7 +70,7 @@
                             class="block w-full button-outline text-xs text-center font-medium"
                             :href="route('realtor.listing.image.create', {listing : item.id})"
                             >
-                        Images
+                        Images ({{ item.images_count }})
                         </Link>
                     </div>
                 </section>

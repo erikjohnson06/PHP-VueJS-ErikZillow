@@ -54,7 +54,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->put('listing/{listing}/delete', [RealtorListingController::class, 'delete']);
 
         Route::resource('listing.image', RealtorListingImageController::class)
-            ->only(['create', 'store'])
+            ->only(['create', 'store', 'destroy'])
             ->withTrashed();
     });
 });

@@ -14,6 +14,10 @@ class ListingImage extends Model {
         'filename'
     ];
 
+    protected $appends = [
+        'src'
+    ];
+
     /**
      * Map the listing_id field to a listing
      *
@@ -21,5 +25,9 @@ class ListingImage extends Model {
      */
     public function listing(): BelongsTo {
         return $this->belongsTo(Listing::class);
+    }
+
+    public function getSrcAttribute() {
+        return asset("storage/{$this->filename}");
     }
 }

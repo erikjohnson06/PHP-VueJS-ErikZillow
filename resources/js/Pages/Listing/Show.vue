@@ -3,7 +3,19 @@
     <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4">
 
         <Box class="md:col-span-7 flex items-center w-full">
-            <div class="w-full text-center font-medium text-gray-500">Images</div>
+
+            <div v-if="listing.images.length"
+                 class="grid grid-cols-2 gap-1"
+                 >
+                <img v-for="image in listing.images"
+                     :key="image.id"
+                     :src="image.src" />
+            </div>
+
+            <div v-else
+                 class="w-full text-center font-medium text-gray-500"
+                 >Images
+            </div>
         </Box>
 
         <div class="md:col-span-5 flex flex-col gap-4">
@@ -50,7 +62,7 @@
                         <div class="flex justify-between">
                             <div>Total Payment: </div>
                             <div>
-                                <Price  :price="totalPaid" class="font-medium" />
+                                <Price :price="totalPaid" class="font-medium" />
                             </div>
                         </div>
 

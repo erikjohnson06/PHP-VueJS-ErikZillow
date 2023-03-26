@@ -20,15 +20,12 @@ class RealtorListingController extends Controller {
      */
     public function index(Request $request): InertiaResponse {
 
-        //dd($request->boolean('deleted'));
-        //$listings = Listing::latest()
-
         $filters = [
             'deleted' => $request->boolean('deleted'),
             ...$request->only(['by', 'order']) //"..." works like array_merge
         ];
 
-        Log::info(print_r($filters, true));
+        //Log::info(print_r($filters, true));
 
         return Inertia::render('Realtor/Index',
                 [
@@ -36,6 +33,7 @@ class RealtorListingController extends Controller {
                     'listings' => Auth::user()
                         ->listings()
                         ->filter($filters)
+                        ->withCount('images') //Counts the number of images per listing
                         ->paginate(5)
                         ->withQueryString()
                 ]
