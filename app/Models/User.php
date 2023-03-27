@@ -53,7 +53,21 @@ class User extends Authenticatable
         );
     }
 
+    /**
+     * Map a user's listings
+     *
+     * @return HasMany
+     */
     public function listings(): HasMany {
         return $this->hasMany(Listing::class, 'posted_by');
+    }
+
+    /**
+     * Map a user's offers
+     *
+     * @return HasMany
+     */
+    public function offers(): HasMany {
+        return $this->hasMany(Offer::class, 'bidder_id');
     }
 }

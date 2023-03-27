@@ -36,6 +36,15 @@ class Listing extends Model
      *
      * @return HasMany
      */
+    public function offers(): HasMany {
+        return $this->hasMany(Offer::class, 'listing_id');
+    }
+
+    /**
+     * Map a listing's images
+     *
+     * @return HasMany
+     */
     public function images(): HasMany {
         return $this->hasMany(ListingImage::class);
     }

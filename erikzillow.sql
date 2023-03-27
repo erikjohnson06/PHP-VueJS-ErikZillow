@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 23, 2023 at 10:06 AM
+-- Generation Time: Mar 27, 2023 at 10:00 AM
 -- Server version: 5.7.36
 -- PHP Version: 8.1.0
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `erikzillow`
 --
-CREATE DATABASE IF NOT EXISTS `erikzillow` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `erikzillow`;
 
 -- --------------------------------------------------------
 
@@ -42,11 +40,6 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Truncate table before insert `failed_jobs`
---
-
-TRUNCATE TABLE `failed_jobs`;
 -- --------------------------------------------------------
 
 --
@@ -72,13 +65,8 @@ CREATE TABLE IF NOT EXISTS `listings` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `listings_posted_by_foreign` (`posted_by`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Truncate table before insert `listings`
---
-
-TRUNCATE TABLE `listings`;
 --
 -- Dumping data for table `listings`
 --
@@ -94,16 +82,46 @@ INSERT INTO `listings` (`id`, `beds`, `baths`, `area`, `address`, `city`, `zip`,
 (8, 7, 5, 3901, '76 Orn Skyway', 'West Annettaberg', '30238-2213', 'SC', 1390798.00, 1, 1, '', '2023-03-18 14:31:49', '2023-03-18 14:31:49', NULL),
 (9, 5, 3, 3838, '104 Bart Land', 'Elainamouth', '59119-7964', 'GA', 968081.00, 1, 1, '', '2023-03-18 14:31:49', '2023-03-18 14:31:49', NULL),
 (10, 5, 6, 4929, '181 Amelie Flats', 'Yosthaven', '33825-0112', 'SC', 91851.00, 1, 1, '', '2023-03-18 14:31:49', '2023-03-18 14:31:49', NULL),
-(11, 4, 2, 2033, '187 Kutch Lodge', 'East Martineborough', '68923-3249', 'TN', 888830.00, 1, 2, '', '2023-03-18 14:31:49', '2023-03-21 13:27:26', '2023-03-21 13:27:26'),
+(11, 4, 2, 2033, '187 Kutch Lodge', 'East Martineborough', '68923-3249', 'TN', 888830.00, 1, 2, NULL, '2023-03-18 14:31:49', '2023-03-25 15:31:08', '2023-03-21 13:27:26'),
 (12, 4, 6, 2730, '39 Elmore Tunnel', 'West Jerrellborough', '17387-1410', 'NC', 946172.00, 1, 2, '', '2023-03-18 14:31:49', '2023-03-21 13:25:53', '2023-03-21 13:25:53'),
 (13, 5, 3, 4358, '89 Eric Coves', 'Nickmouth', '29699-6297', 'SC', 740792.00, 1, 2, '', '2023-03-18 14:31:49', '2023-03-21 13:27:30', '2023-03-21 13:27:30'),
-(14, 6, 2, 2095, '196 Streich Passage', 'New Norene', '77181-6574', 'GA', 1395033.00, 1, 2, '', '2023-03-18 14:31:49', '2023-03-18 14:31:49', NULL),
-(15, 4, 7, 3189, '31 Madisen Lodge', 'Daynachester', '76872', 'KY', 1226306.00, 1, 2, '', '2023-03-18 14:31:49', '2023-03-18 14:31:49', NULL),
-(16, 1, 4, 4180, '173 Kiera Views', 'Hauckland', '63521', 'NC', 697448.00, 1, 2, '', '2023-03-18 14:31:49', '2023-03-18 14:31:49', NULL),
+(14, 2, 2, 2095, '196 Streich Passage', 'New Norene', '77181-6574', 'GA', 1395033.00, 1, 2, NULL, '2023-03-18 14:31:49', '2023-03-25 16:01:19', NULL),
+(15, 4, 7, 3189, '31 Madisen Lodge', 'Daynachester', '76872', 'KY', 1226306.00, 1, 2, NULL, '2023-03-18 14:31:49', '2023-03-25 15:30:24', NULL),
+(16, 1, 4, 4180, '173 Kiera Views', 'Hauckland', '63521', 'NC', 697448.00, 1, 2, '', '2023-03-18 14:31:49', '2023-03-25 01:55:24', '2023-03-25 01:55:24'),
 (17, 7, 1, 4368, '91 Funk Forks', 'Boyerview', '29232-6161', 'NC', 732385.00, 1, 2, '', '2023-03-18 14:31:49', '2023-03-21 13:29:12', '2023-03-21 13:29:12'),
 (18, 5, 7, 3276, '184 Rempel Points', 'East Theronbury', '68831-7014', 'GA', 1611549.00, 1, 2, '', '2023-03-18 14:31:49', '2023-03-18 14:31:49', NULL),
 (19, 2, 6, 2451, '102 Jeff Views', 'North Javierberg', '43684-7764', 'NC', 1168670.00, 1, 2, '', '2023-03-18 14:31:49', '2023-03-18 14:31:49', NULL),
 (20, 1, 3, 4491, '148 Triston Grove', 'Lake Susana', '53742', 'GA', 1750575.00, 1, 2, '', '2023-03-18 14:31:49', '2023-03-18 14:31:49', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `listing_images`
+--
+
+DROP TABLE IF EXISTS `listing_images`;
+CREATE TABLE IF NOT EXISTS `listing_images` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `filename` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `listing_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `listing_images_listing_id_foreign` (`listing_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `listing_images`
+--
+
+INSERT INTO `listing_images` (`id`, `filename`, `listing_id`, `created_at`, `updated_at`) VALUES
+(1, 'images/iOradozQAFRdpH0DR4pgAdXB7cO6LmPYwFr4yvGK.jpg', 15, '2023-03-25 18:54:36', '2023-03-25 18:54:36'),
+(2, 'images/x8UESROG7Xcj52mLITqBbHCDcx1rcSBrDKf772Lj.jpg', 15, '2023-03-25 18:55:30', '2023-03-25 18:55:30'),
+(4, 'images/hFaxiURdIhYykEhIR7Xb4dybotskvCNAJN9cr8Vg.jpg', 14, '2023-03-26 15:47:22', '2023-03-26 15:47:22'),
+(6, 'images/NNQGIu7YewnurkylFfxVwKXccRtGEmhFHdrR4yKn.jpg', 14, '2023-03-26 16:07:57', '2023-03-26 16:07:57'),
+(7, 'images/qPKQTROiEvWAzbAj6cvRwN9eP7K6Ogc2hCgQXrn8.jpg', 14, '2023-03-26 16:07:57', '2023-03-26 16:07:57'),
+(8, 'images/DIl5tehPJOrwjQC9iINbA7SlLle9L1gjUGRxou5f.jpg', 14, '2023-03-26 16:07:57', '2023-03-26 16:07:57'),
+(9, 'images/0jaGap6Ka3eieJf6xhhcGbFLwVPO0EtjH4mrbF93.jpg', 14, '2023-03-26 16:08:11', '2023-03-26 16:08:11');
 
 -- --------------------------------------------------------
 
@@ -117,13 +135,8 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Truncate table before insert `migrations`
---
-
-TRUNCATE TABLE `migrations`;
 --
 -- Dumping data for table `migrations`
 --
@@ -135,7 +148,30 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (70, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (71, '2019_08_19_000000_create_failed_jobs_table', 1),
 (72, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(73, '2023_03_11_111356_create_listings_table', 1);
+(73, '2023_03_11_111356_create_listings_table', 1),
+(76, '2023_03_25_130347_create_listing_images_table', 3),
+(77, '2023_03_27_092245_create_offers_table', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `offers`
+--
+
+DROP TABLE IF EXISTS `offers`;
+CREATE TABLE IF NOT EXISTS `offers` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `listing_id` bigint(20) UNSIGNED NOT NULL,
+  `bidder_id` bigint(20) UNSIGNED NOT NULL,
+  `amount` int(10) UNSIGNED NOT NULL,
+  `accepted_at` timestamp NULL DEFAULT NULL,
+  `rejected_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `offers_listing_id_foreign` (`listing_id`),
+  KEY `offers_bidder_id_foreign` (`bidder_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -151,11 +187,6 @@ CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
   PRIMARY KEY (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Truncate table before insert `password_reset_tokens`
---
-
-TRUNCATE TABLE `password_reset_tokens`;
 -- --------------------------------------------------------
 
 --
@@ -179,11 +210,6 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Truncate table before insert `personal_access_tokens`
---
-
-TRUNCATE TABLE `personal_access_tokens`;
 -- --------------------------------------------------------
 
 --
@@ -205,11 +231,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Truncate table before insert `users`
---
-
-TRUNCATE TABLE `users`;
 --
 -- Dumping data for table `users`
 --
