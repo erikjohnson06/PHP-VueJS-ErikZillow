@@ -11,7 +11,7 @@ class Offer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'amount','accepted_at','rejected_at'
+        'listing_id','bidder_id','amount','accepted_at','rejected_at'
     ];
 
     /**

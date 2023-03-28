@@ -7,7 +7,7 @@
 
         <div>
 
-            <form>
+            <form @submit.prevent="makeOffer">
                 <input
                     v-model="form.amount"
                     type="text"
@@ -23,7 +23,9 @@
                     class="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer mt-2"
                        />
 
-                <button type="submit" class="button-outline w-full mt-2 text-sm"></button>
+                <button type="submit" class="button-outline w-full mt-2 text-sm">Make an Offer</button>
+
+                {{ form.errors.amount }}
             </form>
         </div>
 
@@ -54,24 +56,15 @@
         amount: props.price
     });
 
+    const makeOffer = () => form.post(
+            route('listing.offer.store', { listing: props.listingId }),
+        {
+            preserveScroll: true,
+            preserveState: true
+        }
+    );
+
     const difference = computed(() => form.amount - props.price);
-    const minPrice = computed(() => Math.ceil(props.price / 2));
-    const maxPrice = computed(() => Math.ceil(props.price * 2));
-
-
-//    import {Link, usePage} from '@inertiajs/vue3';
-//    import {computed} from 'vue';
-//    import ListingSpace from '@/Components/ListingSpace.vue';
-//    import ListingAddress from '@/Components/ListingAddress.vue';
-//    import Price from '@/Components/Price.vue';
-//    import Box from '@/Components/UI/Box.vue';
-//    import {useMonthlyPayment} from '@/Composables/useMonthlyPayment';
-//
-
-//
-//    const { monthlyPayment } = useMonthlyPayment(props.item.price, 3.0, 30);
-//
-//    const user = computed(
-//        () => usePage().props.user
-//    );
+    const minPrice = computed(() => Math.round(props.price / 2));
+    const maxPrice = computed(() => Math.round(props.price * 2));
 </script>

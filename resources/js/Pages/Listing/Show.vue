@@ -83,7 +83,12 @@
                 </div>
             </Box>
 
-            <MakeOffer :listing-id="listing.id" :price="listing.price" />
+
+            <MakeOffer
+                v-if="user"
+                :listing-id="listing.id"
+                :price="listing.price"
+                />
 
         </div>
     </div>
@@ -92,16 +97,14 @@
 
 <script setup>
 
-    import {Link} from '@inertiajs/vue3';
+    import { Link , usePage } from '@inertiajs/vue3';
     import ListingSpace from '@/Components/ListingSpace.vue';
     import ListingAddress from '@/Components/ListingAddress.vue';
     import Price from '@/Components/Price.vue';
     import Box from '@/Components/UI/Box.vue';
     import MakeOffer from '@/Pages/Listing/Show/Components/MakeOffer.vue';
-
-    import {ref} from 'vue';
-
-    import {useMonthlyPayment} from '@/Composables/useMonthlyPayment';
+    import { ref, computed } from 'vue';
+    import { useMonthlyPayment } from '@/Composables/useMonthlyPayment';
 
     const interestRate = ref(3.0);
     const duration = ref(25);
@@ -111,5 +114,9 @@
     });
 
     const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(props.listing.price, interestRate, duration);
+
+    const user = computed(
+        () => usePage().props.user
+    );
 
 </script>

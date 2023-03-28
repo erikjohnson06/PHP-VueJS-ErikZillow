@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\ListingOfferController;
 use App\Http\Controllers\RealtorListingController;
 use App\Http\Controllers\RealtorListingImageController;
 use App\Http\Controllers\UserController;
@@ -57,4 +58,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->only(['create', 'store', 'destroy'])
             ->withTrashed();
     });
+
+    Route::resource('listing.offer', ListingOfferController::class)
+        ->only(['store']);
 });
