@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+use App\Models\Offer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 //use Illuminate\Http\Response;
@@ -54,11 +55,13 @@ class ListingController extends Controller {
         //$this->authorize('view', $listing);
 
         $listing->load(['images']);
+        $offerMade = (Auth::user()) ? $listing->offers()->userOffers(Auth::user()->id)->first() : null;
 
         return Inertia::render(
                 'Listing/Show',
                 [
-                    'listing' => $listing
+                    'listing' => $listing,
+                    'offerMade' => $offerMade
                 ]
         );
     }
