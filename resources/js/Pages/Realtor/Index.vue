@@ -73,6 +73,15 @@
                         Images ({{ item.images_count }})
                         </Link>
                     </div>
+
+                    <div class="mt-2" v-if="!item.deleted_at">
+                        <Link
+                            class="block w-full button-outline text-xs text-center font-medium"
+                            :href="route('realtor.listing.show', {id : item.id})"
+                            >
+                        Offers ({{ item.offers_count }})
+                        </Link>
+                    </div>
                 </section>
 
 

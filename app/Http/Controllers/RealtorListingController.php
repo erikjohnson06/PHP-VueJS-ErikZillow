@@ -34,8 +34,20 @@ class RealtorListingController extends Controller {
                         ->listings()
                         ->filter($filters)
                         ->withCount('images') //Counts the number of images per listing
+                        ->withCount('offers')
                         ->paginate(5)
                         ->withQueryString()
+                ]
+        );
+    }
+
+    public function show(int $id){
+
+        $listing = Listing::findOrFail($id);
+
+        return Inertia::render('Realtor/Show',
+                [
+                    'listing' => $listing->load('offers')
                 ]
         );
     }

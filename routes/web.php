@@ -45,7 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('realtor')->name('realtor.')->group(function () {
 
         Route::resource('listing', RealtorListingController::class)
-            ->only(['index', 'edit', 'update', 'create', 'store', 'destroy'])
+            //->only(['index', 'edit', 'update', 'create', 'store', 'destroy'])
             ->withTrashed(); //Allows use with soft deleted models
 
         Route::name('listing.restore')
