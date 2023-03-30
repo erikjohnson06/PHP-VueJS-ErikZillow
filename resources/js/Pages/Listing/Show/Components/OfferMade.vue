@@ -18,7 +18,7 @@
 
     import Box from '@/Components/UI/Box.vue';
     import Price from '@/Components/Price.vue';
-    import {computed} from 'vue';
+    import { computed } from 'vue';
 
     const props = defineProps({
         offer : Object

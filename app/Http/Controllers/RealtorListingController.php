@@ -41,13 +41,18 @@ class RealtorListingController extends Controller {
         );
     }
 
-    public function show(int $id){
+    /**
+     *
+     * @param int $id
+     * @return InertiaResponse
+     */
+    public function show(int $id) : InertiaResponse{
 
         $listing = Listing::findOrFail($id);
 
         return Inertia::render('Realtor/Show',
                 [
-                    'listing' => $listing->load('offers')
+                    'listing' => $listing->load('offers', 'offers.bidder')
                 ]
         );
     }

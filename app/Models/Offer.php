@@ -44,4 +44,14 @@ class Offer extends Model
 
         return $query->where('bidder_id', $user);
     }
+
+    /**
+     * @param Builder $query
+     * @param Offer $offer
+     * @return Builder
+     */
+    public function scopeAllOffersExcept(Builder $query, Offer $offer) : Builder {
+
+        return $query->where('id', '!=',  $offer->id);
+    }
 }

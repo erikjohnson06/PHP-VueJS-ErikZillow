@@ -44,8 +44,8 @@
 
     import Box from '@/Components/UI/Box.vue';
     import Price from '@/Components/Price.vue';
-    import {computed, watch} from 'vue';
-    import {useForm} from '@inertiajs/vue3';
+    import { computed, watch } from 'vue';
+    import { useForm } from '@inertiajs/vue3';
     import { debounce } from 'lodash';
 
     const props = defineProps({

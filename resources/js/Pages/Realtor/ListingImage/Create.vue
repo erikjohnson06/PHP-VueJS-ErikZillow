@@ -89,24 +89,4 @@
 
     const resetForm = () => form.reset('images');
 
-
-
-//    import {useForm} from '@inertiajs/vue3';
-//    //import {Inertia} from '@inertiajs/inertia'
-//    //import {reactive} from 'vue'
-//
-//    const form = useForm({
-//        beds: 0,
-//        baths: 0,
-//        area: 0,
-//        address: null,
-//        city: null,
-//        state: "",
-//        zip: null,
-//        price: 0,
-//        comments: null
-//    });
-//
-//    const create = () => form.post(route('realtor.listing.store'));
-
 </script>

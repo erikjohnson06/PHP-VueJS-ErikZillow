@@ -96,14 +96,13 @@
 
 <script setup>
 
-    import {Link} from '@inertiajs/vue3';
+    import { Link } from '@inertiajs/vue3';
     import Box from '@/Components/UI/Box.vue';
     import Pagination from '@/Components/UI/Pagination.vue';
     import Price from '@/Components/Price.vue';
     import ListingAddress from '@/Components/ListingAddress.vue';
     import ListingSpace from '@/Components/ListingSpace.vue';
     import RealtorFilters from '@/Pages/Realtor/Index/Components/RealtorFilters.vue';
-
 
     defineProps({
         listings: Object,

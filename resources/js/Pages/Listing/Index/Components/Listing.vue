@@ -27,13 +27,13 @@
 
 <script setup>
 
-    import {Link, usePage} from '@inertiajs/vue3';
-    import {computed} from 'vue';
+    import { Link, usePage } from '@inertiajs/vue3';
+    import { computed } from 'vue';
     import ListingSpace from '@/Components/ListingSpace.vue';
     import ListingAddress from '@/Components/ListingAddress.vue';
     import Price from '@/Components/Price.vue';
     import Box from '@/Components/UI/Box.vue';
-    import {useMonthlyPayment} from '@/Composables/useMonthlyPayment';
+    import { useMonthlyPayment } from '@/Composables/useMonthlyPayment';
 
     const props = defineProps({
         item: Object

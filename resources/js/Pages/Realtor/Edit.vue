@@ -96,9 +96,7 @@
 
 <script setup>
 
-    import {useForm} from '@inertiajs/vue3';
-            //import {Inertia} from '@inertiajs/inertia'
-            //import {reactive} from 'vue'
+    import { useForm } from '@inertiajs/vue3';
 
     const props = defineProps({
         listing: Object
