@@ -9,15 +9,15 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Listing extends Model
-{
+class Listing extends Model {
+
     use HasFactory;
     use SoftDeletes;
 
     protected $fillable = [
         'beds', 'baths', 'area', 'address', 'city', 'zip', 'state', 'price', 'comments', 'status_id', 'posted_by'
     ];
-
+    
     protected $sortable = [
         'created_at', 'updated_at', 'price', 'beds', 'baths', 'area'
     ];
@@ -54,44 +54,61 @@ class Listing extends Model
      * @param array $filters
      * @return Builder
      */
-    public function scopeFilter(Builder $query, array $filters) : Builder {
+    public function scopeNotSold(Builder $query): Builder {
 
-        return  $query
-            ->when(
-                $filters['priceFrom'] ?? false,
-                fn ($query, $value) => $query->where('price', '>=', (float) preg_replace("/,/", "", $value))
-            )
-            ->when(
-                $filters['priceTo'] ?? false,
-                fn ($query, $value) => $query->where('price', '<=', (float) preg_replace("/,/", "", $value))
-            )
-            ->when(
-                $filters['beds'] ?? false,
-                fn ($query, $value) => $query->where('beds',  ((int) $value < 6 ? '=' : '>='), (int) $value)
-            )
-            ->when(
-                $filters['baths'] ?? false,
-                fn ($query, $value) => $query->where('baths', ((int) $value < 6 ? '=' : '>='), (int) $value)
-            )
-            ->when(
-                $filters['areaFrom'] ?? false,
-                fn ($query, $value) => $query->where('area', '>=', (float) preg_replace("/,/", "", $value))
-            )
-            ->when(
-                $filters['areaTo'] ?? false,
-                fn ($query, $value) => $query->where('area', '<=', (float) preg_replace("/,/", "", $value))
-            )
-            ->when(
-                $filters['deleted'] ?? false,
-                fn ($query, $value) => $query->withTrashed()
-            )
-            ->when(
-                $filters['by'] ?? false,
-                fn ($query, $value) =>
+        //Example of relying on the offers table to look for listing with no accepted/rejected offers
+        //return $query->doesntHave('offers')
+        //        ->orWhereHas('offers',
+        //            fn(Builder $query) => $query->whereNull('accepted_at')->whereNull('rejected_at')
+        //);
+
+        return $query->whereNull('sold_at');
+    }
+
+    /**
+     * @param Builder $query
+     * @param array $filters
+     * @return Builder
+     */
+    public function scopeFilter(Builder $query, array $filters): Builder {
+
+        return $query
+                ->when(
+                    $filters['priceFrom'] ?? false,
+                    fn($query, $value) => $query->where('price', '>=', (float) preg_replace("/,/", "", $value))
+                )
+                ->when(
+                    $filters['priceTo'] ?? false,
+                    fn($query, $value) => $query->where('price', '<=', (float) preg_replace("/,/", "", $value))
+                )
+                ->when(
+                    $filters['beds'] ?? false,
+                    fn($query, $value) => $query->where('beds', ((int) $value < 6 ? '=' : '>='), (int) $value)
+                )
+                ->when(
+                    $filters['baths'] ?? false,
+                    fn($query, $value) => $query->where('baths', ((int) $value < 6 ? '=' : '>='), (int) $value)
+                )
+                ->when(
+                    $filters['areaFrom'] ?? false,
+                    fn($query, $value) => $query->where('area', '>=', (float) preg_replace("/,/", "", $value))
+                )
+                ->when(
+                    $filters['areaTo'] ?? false,
+                    fn($query, $value) => $query->where('area', '<=', (float) preg_replace("/,/", "", $value))
+                )
+                ->when(
+                    $filters['deleted'] ?? false,
+                    fn($query, $value) => $query->withTrashed()
+                )
+                ->when(
+                    $filters['by'] ?? false,
+                    fn($query, $value) =>
                     //Ensure that sorted by column is valid
                     !in_array($value, $this->sortable) ?
-                        $query :
-                        $query->orderBy($value, ($filters['order'] ?? "DESC"))
-            );
+                    $query :
+                    $query->orderBy($value, ($filters['order'] ?? "DESC"))
+        );
     }
+
 }

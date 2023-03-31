@@ -27,6 +27,7 @@ class ListingController extends Controller {
 
         $listings = Listing::latest()
             ->filter($filters) //Customer local scope method for filtering (see Listing model)
+            ->notSold()
             ->paginate(10)
             ->withQueryString();
 
@@ -65,4 +66,5 @@ class ListingController extends Controller {
                 ]
         );
     }
+
 }

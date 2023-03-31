@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Builder;
 
-class Offer extends Model
-{
+class Offer extends Model {
+
     use HasFactory;
 
     protected $fillable = [
-        'listing_id','bidder_id','amount','accepted_at','rejected_at'
+        'listing_id', 'bidder_id', 'amount', 'accepted_at', 'rejected_at'
     ];
 
     /**
@@ -38,7 +38,7 @@ class Offer extends Model
      * @param int $user
      * @return Builder
      */
-    public function scopeUserOffers(Builder $query, int $user) : Builder {
+    public function scopeUserOffers(Builder $query, int $user): Builder {
 
         //$user = Auth::user() ? Auth::user()->id : null;
 
@@ -50,8 +50,8 @@ class Offer extends Model
      * @param Offer $offer
      * @return Builder
      */
-    public function scopeAllOffersExcept(Builder $query, Offer $offer) : Builder {
+    public function scopeAllOffersExcept(Builder $query, Offer $offer): Builder {
 
-        return $query->where('id', '!=',  $offer->id);
+        return $query->where('id', '!=', $offer->id);
     }
 }

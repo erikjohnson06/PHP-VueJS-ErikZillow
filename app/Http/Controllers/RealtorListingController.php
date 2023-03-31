@@ -46,7 +46,7 @@ class RealtorListingController extends Controller {
      * @param int $id
      * @return InertiaResponse
      */
-    public function show(int $id) : InertiaResponse{
+    public function show(int $id): InertiaResponse {
 
         $listing = Listing::findOrFail($id);
 
@@ -132,8 +132,7 @@ class RealtorListingController extends Controller {
      */
     public function edit(int $id) {
 
-        $listing = Listing::withTrashed()->findOrFail($id);//  ->where('id', $id)->get(); //Listing::find($id)->withTrashed(); //findOrFail
-
+        $listing = Listing::withTrashed()->findOrFail($id); //  ->where('id', $id)->get(); //Listing::find($id)->withTrashed(); //findOrFail
         //dd($listing);
 
         return Inertia::render(
@@ -238,7 +237,7 @@ class RealtorListingController extends Controller {
 
         $listing = Listing::withTrashed()->findOrFail($id);
 
-        if (!$listing){
+        if (!$listing) {
             return redirect()->back()->with('error', 'Hmm... Listing was not found');
         }
 
@@ -250,4 +249,5 @@ class RealtorListingController extends Controller {
 
         return redirect()->back()->with('success', 'Listing is now published');
     }
+
 }

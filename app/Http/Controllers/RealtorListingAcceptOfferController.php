@@ -21,6 +21,9 @@ class RealtorListingAcceptOfferController extends Controller
             'accepted_at' => Carbon::now()
         ]);
 
+        $offer->listing->sold_at = Carbon::now();
+        $offer->listing->save();
+
         //Reject all other offers
         $offer->listing->offers()->allOffersExcept($offer)->update([
             'rejected_at' => Carbon::now()
