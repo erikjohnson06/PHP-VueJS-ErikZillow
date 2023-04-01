@@ -4,10 +4,19 @@
         <RealtorFilters :filters="filters"/>
     </section>
 
-    <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
-        <Box v-for="item in listings.data" :key="item.id" :class="{'border-dashed' : item.deleted_at }">
+    <section v-if="listings.data.length" class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+        <Box v-for="item in listings.data"
+             :key="item.id"
+             :class="{'border-dashed' : item.deleted_at }">
             <div class="flex flex-col md:flex-row gap-2 md:items-center justify-between">
                 <div :class="{'opacity-25' : item.deleted_at}">
+
+                    <div v-if="item.sold_at != null"
+                        class="text-xs font-bold uppercase border border-dashed p-1 border-green-300 text-green-500 dark:border-green-600 dark:text-green-600 inline-block rounded-md mb-2"
+                        >
+                        Sold
+                    </div>
+
                     <div class="xl:flex items-center gap-2">
                         <Price :price="item.price" class="text-2xl font-medium"/>
                         <ListingSpace :listing="item" />
@@ -89,6 +98,8 @@
         </Box>
     </section>
 
+    <EmptyState v-else>No Listings Yet</EmptyState>
+
     <section v-if="listings.data.length" class="w-full flex justify-center mt-4 mb-4">
         <Pagination :links="listings.links" />
     </section>
@@ -98,6 +109,7 @@
 
     import { Link } from '@inertiajs/vue3';
     import Box from '@/Components/UI/Box.vue';
+    import EmptyState from '@/Components/UI/EmptyState.vue';
     import Pagination from '@/Components/UI/Pagination.vue';
     import Price from '@/Components/Price.vue';
     import ListingAddress from '@/Components/ListingAddress.vue';

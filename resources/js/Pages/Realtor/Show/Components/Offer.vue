@@ -28,7 +28,7 @@
 
             <div>
                 <Link
-                    v-if="notSold"
+                    v-if="!isSold"
                     :href="route('realtor.offer.accept', { offer: offer.id })"
                     class="button-outline text-xs font-medium"
                     as="button"
@@ -45,16 +45,13 @@
 
     import { Link } from '@inertiajs/vue3';
     import Box from '@/Components/UI/Box.vue';
-//    import Pagination from '@/Components/UI/Pagination.vue';
     import Price from '@/Components/Price.vue';
-//    import ListingAddress from '@/Components/ListingAddress.vue';
-//    import ListingSpace from '@/Components/ListingSpace.vue';
-//    import RealtorFilters from '@/Pages/Realtor/Index/Components/RealtorFilters.vue';
     import { computed } from 'vue';
 
     const props = defineProps({
         offer: Object,
-        listingPrice: Number
+        listingPrice: Number,
+        isSold : Boolean
     });
 
     const difference = computed(
@@ -63,10 +60,6 @@
 
     const madeOn = computed(
             () => new Date(props.offer.created_at).toDateString()
-    );
-
-    const notSold = computed(
-            () => !props.offer.accepted_at && !props.offer.rejected_at
     );
 
 </script>

@@ -31,14 +31,19 @@ class ListingPolicy {
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can view the model. Listing can not be viewed once sold.
      *
      * @param User|null $user
      * @param Listing $listing
      * @return bool
      */
     public function view(?User $user, Listing $listing): bool {
-        return true;
+
+        if ($user && $listing->posted_by === $user->id){
+            return true;
+        }
+
+        return ($listing->sold_at === null);
     }
 
     /**
@@ -52,14 +57,14 @@ class ListingPolicy {
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the user can update the model. Listing can not be updated once sold.
      *
      * @param User $user
      * @param Listing $listing
      * @return bool
      */
     public function update(User $user, Listing $listing): bool {
-        return ($user->id === $listing->posted_by);
+        return ($listing->sold_at === null && $user->id === $listing->posted_by);
     }
 
     /**

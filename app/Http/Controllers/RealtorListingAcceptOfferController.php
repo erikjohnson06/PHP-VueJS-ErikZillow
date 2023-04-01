@@ -12,20 +12,28 @@ use Illuminate\Support\Facades\Log;
 use Inertia\Response as InertiaResponse;
 use Inertia\Inertia;
 
+/**
+ * Example of a Single Action Controller
+ */
 class RealtorListingAcceptOfferController extends Controller
 {
     public function __invoke(Offer $offer){
+
+        $listing = $offer->listing;
+
+        //Ensure users are not able to accept an offer on a listing already sold
+        $this->authorize("update", $listing);
 
         //Accept this offer
         $offer->update([
             'accepted_at' => Carbon::now()
         ]);
 
-        $offer->listing->sold_at = Carbon::now();
-        $offer->listing->save();
+        $listing->sold_at = Carbon::now();
+        $listing->save();
 
         //Reject all other offers
-        $offer->listing->offers()->allOffersExcept($offer)->update([
+        $listing->offers()->allOffersExcept($offer)->update([
             'rejected_at' => Carbon::now()
         ]);
 
