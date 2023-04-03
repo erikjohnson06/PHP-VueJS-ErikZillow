@@ -84,7 +84,7 @@
 
                     return filteredData;
                 })
-                .get(route('listings.all'), {
+                .get(route('listing.index'), {
                     preserveState: true,
                     preserveScroll: true
                 });

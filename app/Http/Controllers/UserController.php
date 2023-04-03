@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
@@ -41,6 +42,8 @@ class UserController extends Controller
 
         Auth::login($user); //Auto-login user
 
-        return redirect()->route('listings.all')->with('success', 'Welcome! Your account has been created!');
+        event(new Registered($user));
+
+        return redirect()->route('listing.index')->with('success', 'Welcome! Your account has been created!');
     }
 }

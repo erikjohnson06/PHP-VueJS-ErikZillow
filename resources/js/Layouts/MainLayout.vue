@@ -5,10 +5,10 @@
         <div class="container mx-auto p-4 w-full">
             <nav class="p-4 flex items-center justify-between">
                 <div class="text-lg font-medium">
-                    <Link :href="route('listings.all')">Listings</Link>
+                    <Link :href="route('listing.index')">Listings</Link>
                 </div>
                 <div class="text-xl text-indigo-600 dark:text-indigo-300 font-bold text-center">
-                    <Link :href="route('listings.all')">ErikZillow</Link>
+                    <Link :href="route('listing.index')">ErikZillow</Link>
                 </div>
                 <div v-if="user" class="flex items-center gap-4">
 
