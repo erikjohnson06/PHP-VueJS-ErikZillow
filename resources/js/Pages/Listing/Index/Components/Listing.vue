@@ -16,12 +16,6 @@
             <ListingAddress :listing="item" class="text-gray-500" />
             </Link>
         </div>
-
-        <!--
-        <div v-if="user">
-            <Link :href="route('realtor.listing.edit', {id : item.id})">Edit</Link>
-        </div>
-        -->
     </Box>
 </template>
 

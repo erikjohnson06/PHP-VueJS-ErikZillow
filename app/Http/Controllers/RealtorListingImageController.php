@@ -6,15 +6,17 @@ use App\Models\Listing;
 use App\Models\ListingImage;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Response as InertiaResponse;
 use Inertia\Inertia;
 
-class RealtorListingImageController extends Controller
-{
+class RealtorListingImageController extends Controller {
+
+    /**
+     * @param Listing $listing
+     * @return InertiaResponse
+     */
     public function create(Listing $listing): InertiaResponse {
 
         $listing->load([
@@ -28,9 +30,12 @@ class RealtorListingImageController extends Controller
         );
     }
 
+    /**
+     * @param Listing $listing
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function store(Listing $listing, Request $request): RedirectResponse {
-
-        //dd($request->hasFile('images'), $request->file('images'));
 
         if (!$request->hasFile('images')) {
             return redirect()->back()->with('error', 'No Images Have Been Selected!');
@@ -58,7 +63,12 @@ class RealtorListingImageController extends Controller
         return redirect()->back()->with('success', 'Images Uploaded');
     }
 
-    public function destroy(Listing $listing, ListingImage $image) : RedirectResponse {
+    /**
+     * @param Listing $listing
+     * @param ListingImage $image
+     * @return RedirectResponse
+     */
+    public function destroy(Listing $listing, ListingImage $image): RedirectResponse {
 
         Storage::disk('public')->delete($image->filename);
 

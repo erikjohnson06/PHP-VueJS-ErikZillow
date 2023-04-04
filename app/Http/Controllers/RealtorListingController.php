@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
+//use Illuminate\Support\Facades\Log;
 use Inertia\Response as InertiaResponse;
 use Inertia\Inertia;
 
@@ -42,9 +42,10 @@ class RealtorListingController extends Controller {
     }
 
     /**
+     * Display details of a given listing
      *
      * @param int $id
-     * @return InertiaResponse
+     * @return Inertia\Inertia\Response
      */
     public function show(int $id): InertiaResponse {
 
@@ -105,23 +106,6 @@ class RealtorListingController extends Controller {
             "updated_at" => Carbon::now()
         ]);
 
-        /*
-          Listing::insert([
-          "beds" => $request->beds,
-          "baths" => $request->baths,
-          "area" => $request->area,
-          "address" => $request->address,
-          "city" => $request->city,
-          "state" => $request->state,
-          "zip" => $request->zip,
-          "price" => $request->price,
-          "status_id" => 1,
-          "posted_by" => Auth::user()->id,
-          "created_at" => Carbon::now(),
-          "updated_at" => Carbon::now()
-          ]);
-         */
-
         return redirect()->route('realtor.listing.index')->with('success', 'Listing was created');
     }
 
@@ -132,8 +116,7 @@ class RealtorListingController extends Controller {
      */
     public function edit(int $id) {
 
-        $listing = Listing::withTrashed()->findOrFail($id); //  ->where('id', $id)->get(); //Listing::find($id)->withTrashed(); //findOrFail
-        //dd($listing);
+        $listing = Listing::withTrashed()->findOrFail($id);
 
         return Inertia::render(
                 'Realtor/Edit',
@@ -193,7 +176,7 @@ class RealtorListingController extends Controller {
     }
 
     /**
-     * Remove the specified resource from storage (soft-delete)
+     * Remove the specified resource from storage (force delete)
      *
      * @return RedirectResponse
      */
@@ -230,6 +213,8 @@ class RealtorListingController extends Controller {
     }
 
     /**
+     * Restore a specific resource from soft-delete status
+     *
      * @param int $id
      * @return RedirectResponse
      */
@@ -249,5 +234,4 @@ class RealtorListingController extends Controller {
 
         return redirect()->back()->with('success', 'Listing is now published');
     }
-
 }

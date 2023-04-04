@@ -11,9 +11,11 @@
         Resend Verification Email
         </Link>
     </div>
-    
+
 </template>
 
 <script setup>
     import { Link } from '@inertiajs/vue3';
+
+    document.title = "ErikZillow | Verify Email";
 </script>

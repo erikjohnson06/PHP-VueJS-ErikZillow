@@ -5,11 +5,14 @@ namespace App\Policies;
 use App\Models\Listing;
 use App\Models\User;
 
-//use Illuminate\Auth\Access\Response;
-
 class ListingPolicy {
 
-    public function before(?User $user, string $ability = ""){
+    /**
+     * @param User|null $user
+     * @param string $ability
+     * @return bool
+     */
+    public function before(?User $user, string $ability = "") : bool {
 
         if ($user->is_admin){
 
@@ -18,6 +21,8 @@ class ListingPolicy {
 
             return true;
         }
+
+        return false;
     }
 
     /**

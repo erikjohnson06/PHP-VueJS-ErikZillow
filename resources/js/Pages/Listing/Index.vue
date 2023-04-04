@@ -26,5 +26,5 @@
         filters: Object
     });
 
-    //console.log(listings);
+    document.title = "ErikZillow | Listings";
 </script>

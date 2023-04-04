@@ -12,8 +12,8 @@
                 <div :class="{'opacity-25' : item.deleted_at}">
 
                     <div v-if="item.sold_at != null"
-                        class="text-xs font-bold uppercase border border-dashed p-1 border-green-300 text-green-500 dark:border-green-600 dark:text-green-600 inline-block rounded-md mb-2"
-                        >
+                         class="text-xs font-bold uppercase border border-dashed p-1 border-green-300 text-green-500 dark:border-green-600 dark:text-green-600 inline-block rounded-md mb-2"
+                         >
                         Sold
                     </div>
 
@@ -121,4 +121,5 @@
         filters: Object
     });
 
+    document.title = "ErikZillow | My Listings";
 </script>

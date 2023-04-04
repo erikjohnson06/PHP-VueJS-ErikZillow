@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
-use App\Models\Offer;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-//use Illuminate\Http\Response;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Response as InertiaResponse;
 use Inertia\Inertia;
@@ -50,11 +46,6 @@ class ListingController extends Controller {
 
         $listing = Listing::findOrFail($id);
 
-        //if (Auth::user()->cannot('view', $listing)){
-        //    abort(403);
-        //}
-        //$this->authorize('view', $listing);
-
         $listing->load(['images']);
         $offerMade = (Auth::user()) ? $listing->offers()->userOffers(Auth::user()->id)->first() : null;
 
@@ -66,5 +57,4 @@ class ListingController extends Controller {
                 ]
         );
     }
-
 }

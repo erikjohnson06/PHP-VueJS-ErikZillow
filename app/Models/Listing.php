@@ -14,10 +14,16 @@ class Listing extends Model {
     use HasFactory;
     use SoftDeletes;
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'beds', 'baths', 'area', 'address', 'city', 'zip', 'state', 'price', 'comments', 'status_id', 'posted_by'
     ];
-    
+
+    /**
+     * @var array
+     */
     protected $sortable = [
         'created_at', 'updated_at', 'price', 'beds', 'baths', 'area'
     ];
@@ -110,5 +116,4 @@ class Listing extends Model {
                     $query->orderBy($value, ($filters['order'] ?? "DESC"))
         );
     }
-
 }

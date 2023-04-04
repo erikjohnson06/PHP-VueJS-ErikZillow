@@ -10,10 +10,16 @@ class ListingImage extends Model {
 
     use HasFactory;
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'filename'
     ];
 
+    /**
+     * @var array
+     */
     protected $appends = [
         'src'
     ];
@@ -27,7 +33,10 @@ class ListingImage extends Model {
         return $this->belongsTo(Listing::class);
     }
 
-    public function getSrcAttribute() {
+    /**
+     * @return string
+     */
+    public function getSrcAttribute() : string {
         return asset("storage/{$this->filename}");
     }
 }

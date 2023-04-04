@@ -115,6 +115,7 @@
         id: props.listing.id
     });
 
-    const update = () => form.put(route('realtor.listing.update', { listing: props.listing.id }));
+    const update = () => form.put(route('realtor.listing.update', {listing: props.listing.id}));
 
+    document.title = "ErikZillow | Edit Listing";
 </script>

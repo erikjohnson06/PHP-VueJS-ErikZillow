@@ -122,11 +122,11 @@
     watch(
         filterForm,
         debounce(
-                () => router.get(
-                    route('realtor.listing.index'),
-                    filterForm,
-                    {preserveState: true, preserveScroll: true}
+            () => router.get(
+                route('realtor.listing.index'),
+                filterForm,
+                {preserveState: true, preserveScroll: true}
             ), 500
-                )
+        )
     );
 </script>

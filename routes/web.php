@@ -49,7 +49,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('realtor')->name('realtor.')->group(function () {
 
         Route::resource('listing', RealtorListingController::class)
-            //->only(['index', 'edit', 'update', 'create', 'store', 'destroy'])
             ->withTrashed(); //Allows use with soft deleted models
 
         Route::name('offer.accept')
@@ -73,8 +72,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->only(['index', 'update']);
 });
 
-Route::get('/email/verify', function(){
-        return Inertia::render('Auth/VerifyEmail');
+Route::get('/email/verify', function () {
+    return Inertia::render('Auth/VerifyEmail');
 })->middleware('auth')->name("verification.notice");
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
@@ -82,7 +81,6 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
     return redirect('listing.index')->with('success', 'Thank you. Your enail address has been verified.');
 })->middleware(['auth', 'signed'])->name('verification.verify');
-
 
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();

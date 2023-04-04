@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Listing;
 use App\Models\Offer;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Inertia\Response as InertiaResponse;
-use Inertia\Inertia;
 
 /**
  * Example of a Single Action Controller
  */
-class RealtorListingAcceptOfferController extends Controller
-{
-    public function __invoke(Offer $offer){
+class RealtorListingAcceptOfferController extends Controller {
+
+    /**
+     * @param Offer $offer
+     * @return RedirectResponse
+     */
+    public function __invoke(Offer $offer) : RedirectResponse {
 
         $listing = $offer->listing;
 

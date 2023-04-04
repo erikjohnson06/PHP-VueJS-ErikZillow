@@ -29,7 +29,6 @@
                 </Link>
             </div>
         </div>
-
     </section>
 
     <EmptyState v-else>No Notifications Yet</EmptyState>
@@ -48,6 +47,8 @@
     import Price from '@/Components/Price.vue';
 
     defineProps({
-        notifications : Object
+        notifications: Object
     });
+
+    document.title = "ErikZillow | Notifications";
 </script>

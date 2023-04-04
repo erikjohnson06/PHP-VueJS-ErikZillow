@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Inertia\Response as InertiaResponse;
 use Inertia\Inertia;
 
-class UserController extends Controller
-{
+class UserController extends Controller {
 
     /**
      * @return InertiaResponse
@@ -26,7 +23,7 @@ class UserController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function store(Request $request) : RedirectResponse {
+    public function store(Request $request): RedirectResponse {
 
         $request->validate([
             'name' => 'required|string',
@@ -35,9 +32,9 @@ class UserController extends Controller
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password, //Mutator in User model automatically hashes password
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password, //Mutator in User model automatically hashes password
         ]);
 
         Auth::login($user); //Auto-login user

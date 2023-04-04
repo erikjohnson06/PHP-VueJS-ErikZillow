@@ -8,9 +8,13 @@ use Illuminate\Notifications\DatabaseNotification;
 use Inertia\Response as InertiaResponse;
 use Inertia\Inertia;
 
-class NotificationController extends Controller
-{
-    public function index(Request $request) : InertiaResponse {
+class NotificationController extends Controller {
+
+    /**
+     * @param Request $request
+     * @return Inertia\Inertia\Response
+     */
+    public function index(Request $request): InertiaResponse {
 
         return Inertia::render(
                 'Notifications/Index',
@@ -27,11 +31,8 @@ class NotificationController extends Controller
      */
     public function update(DatabaseNotification $notification): RedirectResponse {
 
-        //dd($notification);
-
         $this->authorize('update', $notification);
 
-        //$id = (int) $request->id;
         $notification->markAsRead();
 
         return redirect()->route('notification.index')->with('success', 'Notifcation marked as read');

@@ -54,4 +54,5 @@
             () => props.listing.offers.length
     );
 
+    document.title = "ErikZillow | Listing Details";
 </script>

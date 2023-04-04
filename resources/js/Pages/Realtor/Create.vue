@@ -148,4 +148,5 @@
 
     const create = () => form.post(route('realtor.listing.store'));
 
+    document.title = "ErikZillow | Create New Listing";
 </script>

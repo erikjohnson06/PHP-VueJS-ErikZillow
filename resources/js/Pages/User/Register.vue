@@ -38,7 +38,6 @@
             </div>
         </div>
     </form>
-
 </template>
 
 <script setup>
@@ -53,4 +52,6 @@
     });
 
     const register = () => form.post(route('register.store'));
+
+    document.title = "ErikZillow | Register";
 </script>

@@ -1,7 +1,5 @@
 <template>
-
     <Box>
-
         <template #header>Offer Made</template>
 
         <Price :price="offer.amount"  class="text-3xl" />

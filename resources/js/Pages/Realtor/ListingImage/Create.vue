@@ -39,7 +39,7 @@
                       as="button"
                       class="mt-2 button-outline text-sm"
                       >
-                    Delete
+                Delete
                 </Link>
             </div>
         </section>

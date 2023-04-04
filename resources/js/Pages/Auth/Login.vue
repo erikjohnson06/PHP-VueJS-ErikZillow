@@ -34,4 +34,6 @@
     });
 
     const login = () => form.post(route('login.store'));
+
+    document.title = "ErikZillow | Login";
 </script>

@@ -39,9 +39,6 @@ class Offer extends Model {
      * @return Builder
      */
     public function scopeUserOffers(Builder $query, int $user): Builder {
-
-        //$user = Auth::user() ? Auth::user()->id : null;
-
         return $query->where('bidder_id', $user);
     }
 
@@ -51,7 +48,6 @@ class Offer extends Model {
      * @return Builder
      */
     public function scopeAllOffersExcept(Builder $query, Offer $offer): Builder {
-
         return $query->where('id', '!=', $offer->id);
     }
 }

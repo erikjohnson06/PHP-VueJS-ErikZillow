@@ -81,7 +81,6 @@
                 </div>
             </Box>
 
-
             <MakeOffer
                 v-if="user && !offerMade"
                 @offer-updated="offer = $event"
@@ -93,7 +92,6 @@
                 v-if="user && offerMade"
                 :offer="offerMade"
                 />
-
         </div>
     </div>
 </template>
@@ -127,4 +125,5 @@
             () => usePage().props.user
     );
 
+    document.title = "ErikZillow | Listing Details";
 </script>
