@@ -29,7 +29,7 @@ return new class extends Migration
 
             $table->unsignedFloat("price", 10);
 
-            $table->tinyInteger("status_id")->default(1); //->comment("1=Pending,2=Approved")
+            //$table->tinyInteger("status_id")->default(1)->comment("1=Pending,2=Approved")
 
             $table->foreignIdFor(User::class, 'posted_by')
                 ->constrained('users')
@@ -48,11 +48,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('listings');
-
-        //Schema::table('listings', function (Blueprint $table) {
-        //    $table->dropColumn('beds');
-        //});
-
-        //Schema::dropColumns('listings', ['beds', 'baths','area','address_1','address_2','city','zip', 'price']);
     }
 };

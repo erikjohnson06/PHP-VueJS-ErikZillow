@@ -7,6 +7,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules;
 use Inertia\Response as InertiaResponse;
 use Inertia\Inertia;
 
@@ -26,9 +27,14 @@ class UserController extends Controller {
     public function store(Request $request): RedirectResponse {
 
         $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string|email|unique:' . User::class,
-            'password' => 'required|string|min:8|confirmed'
+            'name' => 'required|string|max:50',
+            'email' => 'required|string|email|max:50|unique:' . User::class,
+            'password' => ['required', 'string', 'confirmed',
+                    Rules\Password::min(8)
+                    ->letters()
+                    ->numbers()
+                    ->uncompromised()
+            ]
         ]);
 
         $user = User::create([
@@ -41,6 +47,7 @@ class UserController extends Controller {
 
         event(new Registered($user));
 
-        return redirect()->route('listing.index')->with('success', 'Welcome! Your account has been created!');
+        return redirect()->route('listing.index')->with('success', 'Welcome! Your account has been created! Please check your inbox for the next steps.');
     }
+
 }

@@ -6,6 +6,8 @@
 
         <title>Erik Zillow</title>
 
+        <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
 
         @routes

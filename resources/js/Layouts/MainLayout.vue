@@ -7,8 +7,14 @@
                 <div class="text-lg font-medium">
                     <Link :href="route('listing.index')">Listings</Link>
                 </div>
-                <div class="text-xl text-indigo-600 dark:text-indigo-300 font-bold text-center">
-                    <Link :href="route('listing.index')">ErikZillow</Link>
+                <div class="inline-flex flex-nowrap items-center text-xl text-indigo-600 dark:text-indigo-300 font-bold text-center">
+                    <Link  :href="route('listing.index')">
+                        <img class="inline-block h-8 align-bottom"
+                             src="/assets/erikzillow_logo.png"
+                             alt="Logo"
+                             />
+                        ErikZillow
+                    </Link>
                 </div>
                 <div v-if="user" class="flex items-center gap-4">
 
@@ -53,6 +59,7 @@
 
     import { Link, usePage } from '@inertiajs/vue3';
     import { computed } from 'vue';
+
 
     const flashSuccess = computed(
             () => usePage().props.flash.success

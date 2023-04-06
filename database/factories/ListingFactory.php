@@ -29,8 +29,11 @@ class ListingFactory extends Factory {
             'zip' => fake()->postcode(),
             'state' => $states[0],
             'price' => fake()->numberBetween(50000, 1000000),
-            'status_id' => 1,
-            'comments' => ''
+            //'status_id' => 1,
+            'posted_by' => 1,
+            'sold_at' => NULL,
+            'comments' => '',
+            'deleted_at' => NULL
         ];
     }
 }

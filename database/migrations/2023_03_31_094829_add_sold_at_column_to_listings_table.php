@@ -24,5 +24,7 @@ return new class extends Migration
         Schema::table('listings', function (Blueprint $table) {
             $table->dropColumn("sold_at");
         });
+        
+        //Schema::dropColumns('listings', ['sold_at']);
     }
 };
