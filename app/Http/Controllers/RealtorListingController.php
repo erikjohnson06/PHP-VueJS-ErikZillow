@@ -101,7 +101,6 @@ class RealtorListingController extends Controller {
             "zip" => $request->zip,
             "price" => $request->price,
             "comments" => $request->comments,
-            "status_id" => 1,
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ]);
@@ -166,7 +165,6 @@ class RealtorListingController extends Controller {
             "state" => $request->state,
             "zip" => $request->zip,
             "price" => $request->price,
-            "status_id" => 1,
             "posted_by" => Auth::user()->id,
             "comments" => $request->comments,
             "updated_at" => Carbon::now()

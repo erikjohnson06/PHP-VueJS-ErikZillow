@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 06, 2023 at 09:15 AM
+-- Generation Time: Apr 06, 2023 at 09:14 AM
 -- Server version: 5.7.36
 -- PHP Version: 8.1.0
 
@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `erikzillow`
+-- Database: `erikzillow_testing`
 --
-CREATE DATABASE IF NOT EXISTS `erikzillow` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `erikzillow`;
+CREATE DATABASE IF NOT EXISTS `erikzillow_testing` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `erikzillow_testing`;
 
 -- --------------------------------------------------------
 
