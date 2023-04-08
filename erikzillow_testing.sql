@@ -79,31 +79,6 @@ CREATE TABLE IF NOT EXISTS `listings` (
 --
 
 TRUNCATE TABLE `listings`;
---
--- Dumping data for table `listings`
---
-
-INSERT INTO `listings` (`id`, `beds`, `baths`, `area`, `address`, `city`, `zip`, `state`, `price`, `posted_by`, `sold_at`, `comments`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 3, 7, 4445, '88 Kertzmann Plains', 'Ondrickaberg', '68604-1290', 'SC', 492109.00, 1, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(2, 1, 6, 2449, '64 Jason Springs', 'South Connerside', '70732-2253', 'TN', 228642.00, 1, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(3, 5, 1, 2297, '165 Marlene Lane', 'Herzogtown', '44921', 'SC', 706531.00, 1, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(4, 6, 5, 2353, '145 Sanford Rapid', 'Simonisburgh', '21273', 'GA', 540676.00, 1, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(5, 4, 2, 4798, '79 Bartell Rue', 'Port Devynmouth', '94418', 'GA', 739618.00, 1, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(6, 5, 3, 2793, '121 Christa Alley', 'Lake Lorenzoland', '46348', 'NC', 270981.00, 1, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(7, 5, 3, 3524, '113 Nikko Walks', 'Catharineshire', '47251', 'TN', 769760.00, 1, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(8, 6, 1, 4221, '91 Russel View', 'Oceaneshire', '82451-2437', 'TN', 955444.00, 1, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(9, 7, 7, 4739, '184 Fanny Fort', 'South Dina', '44005-0257', 'GA', 312814.00, 1, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(10, 3, 2, 4875, '75 Bartell Coves', 'South Luciano', '31523', 'TN', 194446.00, 1, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(11, 3, 6, 3674, '197 Bayer Alley', 'West Aisha', '05470', 'TN', 177725.00, 2, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(12, 5, 1, 2616, '124 Nicholaus Estates', 'Hermanhaven', '13783-4608', 'KY', 574550.00, 2, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(13, 6, 6, 3819, '99 Erling Station', 'North Jalen', '90831', 'KY', 155912.00, 2, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(14, 2, 4, 3019, '107 Emmerich Brook', 'Lake Tre', '83807-0635', 'NC', 289156.00, 2, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(15, 7, 4, 2182, '169 Olen Loaf', 'Wuckertborough', '15403', 'GA', 449151.00, 2, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(16, 2, 1, 2357, '14 General Knoll', 'Rutherfordberg', '32070', 'GA', 691969.00, 2, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(17, 1, 6, 2334, '86 Pfeffer Glen', 'North Sibylmouth', '79058', 'SC', 774768.00, 2, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(18, 5, 3, 3700, '106 Emmerich Forest', 'Nonaburgh', '49056-5443', 'TN', 363638.00, 2, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(19, 6, 3, 2064, '180 Juanita Station', 'Garnettview', '74259-6517', 'GA', 493191.00, 2, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL),
-(20, 7, 7, 2789, '183 Hessel Union', 'North Kaelynchester', '26773', 'SC', 919222.00, 2, NULL, '', '2023-04-05 13:09:50', '2023-04-05 13:09:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -287,17 +262,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 TRUNCATE TABLE `users`;
---
--- Dumping data for table `users`
---
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `is_admin`) VALUES
-(1, 'Test User', 'test@example.com', '2023-04-05 13:09:50', '$2y$10$/J7Hnu/R8IFN/SduWwmX/.pkm5mNRJIAYNy9PXJ4NpRiS3T9iecOG', 'a3ptgH5k1g', '2023-04-05 13:09:50', '2023-04-05 13:09:50', 1),
-(2, 'Test User 2', 'test2@example.com', '2023-04-05 13:09:50', '$2y$10$5EiaSK01hKJNtAoyDZ6j0eb6ngLjAgg8LovHvRiE8jDwgJED3CxlW', 'efGXsGenkj', '2023-04-05 13:09:50', '2023-04-05 13:09:50', 0),
-(3, 'Test Guy 3', 'test3@example.com', '2023-04-05 13:26:34', '$2y$10$7zZrxQalJYpuPVfV9sQIwubqUeS/dTWMwnnCPjTRdpaolEVA0T5Ey', 'yCzhu1r3Acug0BrITw7YfFHUJZ7mS9hcpmsO97dunX4vLLRjD2r2YAZ84I5v', '2023-04-05 13:24:57', '2023-04-05 13:26:34', 0),
-(4, 'Test Guy 4', 'test4@example.com', '2023-04-05 13:42:22', '$2y$10$NF11XZUSEJglHCm8JzNpAejklpGlvEhHS2jDemVxEB9L/fQgiJn/a', NULL, '2023-04-05 13:40:53', '2023-04-05 13:42:22', 0),
-(5, 'Test Guy 5', 'test5@example.com', '2023-04-05 13:55:57', '$2y$10$oBBO8adRtskUcoJgbI112uRvLWVaCw760PvAanE3le/WGFJSYC6OS', NULL, '2023-04-05 13:55:35', '2023-04-05 13:55:57', 0);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

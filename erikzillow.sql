@@ -292,11 +292,8 @@ TRUNCATE TABLE `users`;
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `is_admin`) VALUES
-(1, 'Test User', 'test@example.com', '2023-04-05 13:09:50', '$2y$10$/J7Hnu/R8IFN/SduWwmX/.pkm5mNRJIAYNy9PXJ4NpRiS3T9iecOG', 'a3ptgH5k1g', '2023-04-05 13:09:50', '2023-04-05 13:09:50', 1),
-(2, 'Test User 2', 'test2@example.com', '2023-04-05 13:09:50', '$2y$10$5EiaSK01hKJNtAoyDZ6j0eb6ngLjAgg8LovHvRiE8jDwgJED3CxlW', 'efGXsGenkj', '2023-04-05 13:09:50', '2023-04-05 13:09:50', 0),
-(3, 'Test Guy 3', 'test3@example.com', '2023-04-05 13:26:34', '$2y$10$7zZrxQalJYpuPVfV9sQIwubqUeS/dTWMwnnCPjTRdpaolEVA0T5Ey', 'yCzhu1r3Acug0BrITw7YfFHUJZ7mS9hcpmsO97dunX4vLLRjD2r2YAZ84I5v', '2023-04-05 13:24:57', '2023-04-05 13:26:34', 0),
-(4, 'Test Guy 4', 'test4@example.com', '2023-04-05 13:42:22', '$2y$10$NF11XZUSEJglHCm8JzNpAejklpGlvEhHS2jDemVxEB9L/fQgiJn/a', NULL, '2023-04-05 13:40:53', '2023-04-05 13:42:22', 0),
-(5, 'Test Guy 5', 'test5@example.com', '2023-04-05 13:55:57', '$2y$10$oBBO8adRtskUcoJgbI112uRvLWVaCw760PvAanE3le/WGFJSYC6OS', NULL, '2023-04-05 13:55:35', '2023-04-05 13:55:57', 0);
+(1, 'Test User', 'test@example.com', '2023-04-05 13:09:50', '$2y$10$tsfMYNJKiCAAZSW6lK7SR.QnQp9uuS5oVbiQwqBeKKB9WGnDWzA96', 'a3ptgH5k1g', '2023-04-05 13:09:50', '2023-04-05 13:09:50', 1),
+(2, 'Test User 2', 'test2@example.com', '2023-04-05 13:09:50', '$2y$10$tsfMYNJKiCAAZSW6lK7SR.QnQp9uuS5oVbiQwqBeKKB9WGnDWzA96', 'efGXsGenkj', '2023-04-05 13:09:50', '2023-04-05 13:09:50', 0)
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

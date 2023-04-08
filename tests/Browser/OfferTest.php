@@ -9,8 +9,7 @@ use Illuminate\Foundation\Testing\DatabaseTruncation;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class OfferTest extends DuskTestCase
-{
+class OfferTest extends DuskTestCase {
 
     use DatabaseTruncation;
 
@@ -18,8 +17,7 @@ class OfferTest extends DuskTestCase
      * @group offer
      * @return void
      */
-    public function test_offers_can_be_submitted_for_authenticated_users(): void
-    {
+    public function test_offers_can_be_submitted_for_authenticated_users(): void {
 
         $user1 = User::factory()->create();
         $user2 = User::factory()->create();
@@ -37,14 +35,14 @@ class OfferTest extends DuskTestCase
                 ->click('@login-button');
 
             $browser->waitForLocation("/listings")
-                ->assertSee($user2->name);
+                ->assertAuthenticated();
 
             $browser->visit('/listing/details/' . $listing->id)
-                    ->assertSee('Basic Info')
-                    ->assertSee('Estimated Monthly Payment')
-                    ->assertSee($listing->address)
-                    ->assertSee('Make an Offer') //Option to make an offer should not be displayed
-                    ->click('@make-an-offer');
+                ->assertSee('Basic Info')
+                ->assertSee('Estimated Monthly Payment')
+                ->assertSee($listing->address)
+                ->assertSee('Make an Offer') //Option to make an offer should not be displayed
+                ->click('@make-an-offer');
 
             $browser->waitForText("Offer has been submitted")
                 ->assertSee("Offer has been submitted");
@@ -55,8 +53,7 @@ class OfferTest extends DuskTestCase
      * @group offer
      * @return void
      */
-    public function test_offers_can_be_accepted_for_authenticated_users(): void
-    {
+    public function test_offers_can_be_accepted_for_authenticated_users(): void {
 
         $user1 = User::factory()->create();
         $user2 = User::factory()->create();
@@ -79,13 +76,13 @@ class OfferTest extends DuskTestCase
                 ->click('@login-button');
 
             $browser->waitForLocation("/listings")
-                ->assertSee($user1->name);
+                ->assertAuthenticated();
 
             $browser->visit('realtor/listing/' . $listing->id)
-                    ->assertSee('Offer #' . $offer->id)
-                    ->assertSee($listing->address)
-                    ->assertSee('Accept')
-                    ->click('@accept-button');
+                ->assertSee('Offer #' . $offer->id)
+                ->assertSee($listing->address)
+                ->assertSee('Accept')
+                ->click('@accept-button');
 
             $browser->waitForText("Offer #{$offer->id} has been accepted")
                 ->assertSee("Offer #{$offer->id} has been accepted");

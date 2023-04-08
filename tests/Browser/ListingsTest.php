@@ -81,7 +81,7 @@ class ListingsTest extends DuskTestCase {
                 ->click('@login-button');
 
             $browser->waitForLocation("/listings")
-                ->assertSee($user2->name);
+                ->assertAuthenticated();
 
             $browser->visit('/listing/details/' . $listing->id)
                 ->assertSee('Basic Info')
@@ -106,7 +106,7 @@ class ListingsTest extends DuskTestCase {
                 ->click('@login-button');
 
             $browser->waitForLocation("/listings")
-                ->assertSee($user->name)
+                ->assertAuthenticated()
                 ->click('@new_listing');
 
             $browser->waitForLocation("/realtor/listing/create")
@@ -147,7 +147,7 @@ class ListingsTest extends DuskTestCase {
                 ->click('@login-button');
 
             $browser->waitForLocation("/listings")
-                ->assertSee($user->name);
+                ->assertAuthenticated();
 
             $browser->visit('realtor/listing/' . $listing->id . '/edit')
                 ->assertSee("Beds")

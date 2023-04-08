@@ -8,8 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseTruncation;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class NotificationsTest extends DuskTestCase
-{
+class NotificationsTest extends DuskTestCase {
 
     use DatabaseTruncation;
 
@@ -17,8 +16,7 @@ class NotificationsTest extends DuskTestCase
      * @group notification
      * @return void
      */
-    public function test_notifications_can_be_created_and_marked_as_read(): void
-    {
+    public function test_notifications_can_be_created_and_marked_as_read(): void {
         $user1 = User::factory()->create();
         $user2 = User::factory()->create();
 
@@ -36,10 +34,10 @@ class NotificationsTest extends DuskTestCase
                 ->click('@login-button');
 
             $first->waitForLocation("/listings")
-                ->assertSee($user1->name);
+                ->assertAuthenticated();
 
             $first->visit('/listing/details/' . $listing->id)
-                    ->click('@make-an-offer');
+                ->click('@make-an-offer');
 
             $first->waitForText("Offer has been submitted")
                 ->assertSee("Offer has been submitted");

@@ -39,7 +39,8 @@ class UserTest extends DuskTestCase {
                 ->click('@login-button');
 
             $browser->waitForLocation("/listings")
-                ->assertSee($user->name);
+                ->assertSee($user->name)
+                ->assertAuthenticated();
         });
     }
 
@@ -59,10 +60,12 @@ class UserTest extends DuskTestCase {
 
             $browser->waitForLocation("/listings")
                 ->assertSee($user->name)
+                ->assertAuthenticated()
                 ->click('@logout');
 
             $browser->waitForText("Sign In")
-                ->assertSee("Sign In"); //After logging out, user is redirected back to listings page, where Sign In is displayed
+                ->assertGuest()
+                ->assertSee("Sign In");
         });
     }
 
@@ -70,12 +73,11 @@ class UserTest extends DuskTestCase {
      * @group register
      * @return void
      */
-    public function test_register_page_loads_successfully(): void
-    {
+    public function test_register_page_loads_successfully(): void {
 
         $this->browse(function (Browser $browser) {
             $browser->visit('/register')
-                    ->assertSee('Register');
+                ->assertSee('Register');
         });
     }
 
@@ -83,19 +85,18 @@ class UserTest extends DuskTestCase {
      * @group register
      * @return void
      */
-    public function test_user_can_register_successfully(): void
-    {
+    public function test_user_can_register_successfully(): void {
 
         $this->browse(function (Browser $browser) {
             $browser->visit('/register')
-                    ->type('@name', 'Tester')
-                    ->type('@email', 'email@testing.com')
-                    ->type('@password', 'Password123')
-                    ->type('@password_confirmation', 'Password123')
-                    ->click('@create-button');
+                ->type('@name', 'Tester')
+                ->type('@email', 'email@testing.com')
+                ->type('@password', 'Password123')
+                ->type('@password_confirmation', 'Password123')
+                ->click('@create-button');
 
             $browser->waitForLocation("/listings")
-                  ->assertSee("Your account has been created")
+                ->assertSee("Your account has been created")
                 ->assertPathIs('/listings');
         });
     }
