@@ -13,14 +13,19 @@ use Illuminate\Support\Facades\Auth;
 class ListingOfferController extends Controller {
 
     /**
-     * @param Listing $listing
+     * @param int $id
      * @param Request $request
      * @return RedirectResponse
      */
-    public function store(Listing $listing, Request $request): RedirectResponse {
+    public function store(int $id, Request $request): RedirectResponse {
+
+        $listing = Listing::findOrFail($id);
 
         //Ensure users are not able to make an offer on a listing already sold
-        $this->authorize("view", $listing);
+        //$this->authorize("offer", $listing);
+        if (Auth::user()->cannot('offer', $listing)) {
+            return redirect()->back()->with('success', 'Whoops.. your not able to make an offer on a listing already sold.');
+        }
 
         $request->validate([
             'amount' => 'required|integer|min:1|max:20000000'

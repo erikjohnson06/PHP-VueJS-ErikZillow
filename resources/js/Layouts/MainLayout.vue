@@ -10,7 +10,7 @@
                 <div class="inline-flex flex-nowrap items-center text-xl text-indigo-600 dark:text-indigo-300 font-bold text-center">
                     <Link  :href="route('listing.index')">
                         <img class="inline-block h-8 align-bottom"
-                             src="/assets/erikzillow_logo.png"
+                             src="./erikzillow_logo.png"
                              alt="Logo"
                              />
                         ErikZillow
@@ -19,7 +19,8 @@
                 <div v-if="user" class="flex items-center gap-4">
 
                     <Link :href="route('notification.index')"
-                          class="text-gray-500 relative pr-2 py-2 text-lg">
+                          class="text-gray-500 relative pr-2 py-2 text-lg"
+                          dusk="my_notifications">
 
                     &#128276;
 
@@ -29,15 +30,15 @@
                     </div>
                     </Link>
 
-                    <Link :href="route('realtor.listing.index')" class="text-sm text-gray-500">{{ user.name }}</Link>
-                    <Link :href="route('realtor.listing.create')" class="button-primary">+ New Listing</Link>
+                    <Link :href="route('realtor.listing.index')" class="text-sm text-gray-500" dusk="my_listings">{{ user.name }}</Link>
+                    <Link :href="route('realtor.listing.create')" class="button-primary" dusk="new_listing">+ New Listing</Link>
                     <div>
-                        <Link :href="route('logout')" as='button'>Logout</Link>
+                        <Link :href="route('logout')" as="button" dusk="logout">Logout</Link>
                     </div>
                 </div>
                 <div v-else class="flex items-center gap-2">
-                    <Link :href="route('register')">Register</Link>
-                    <Link :href="route('login')">Sign In</Link>
+                    <Link :href="route('register')" dusk="register">Register</Link>
+                    <Link :href="route('login')" dusk="login">Sign In</Link>
                 </div>
             </nav>
         </div>

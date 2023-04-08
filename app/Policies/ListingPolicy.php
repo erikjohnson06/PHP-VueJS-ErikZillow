@@ -8,24 +8,6 @@ use App\Models\User;
 class ListingPolicy {
 
     /**
-     * @param User|null $user
-     * @param string $ability
-     * @return bool
-     */
-    public function before(?User $user, string $ability = "") : bool {
-
-        if ($user->is_admin){
-
-            //Create exceptions based on ability requested
-            //if ($ability === "update"){return false}
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
      * Determine whether the user can view any models.
      *
      * @param User|null $user
@@ -70,6 +52,22 @@ class ListingPolicy {
      */
     public function update(User $user, Listing $listing): bool {
         return ($listing->sold_at === null && $user->id === $listing->posted_by);
+    }
+
+    /**
+     * Determine whether the user can create an offer on the listing. Offer can not be made once listing is sold.
+     *
+     * @param User|null $user
+     * @param Listing $listing
+     * @return bool
+     */
+    public function offer(?User $user, Listing $listing): bool {
+
+        if (!$user){
+            return false;
+        }
+
+        return ($listing->sold_at === null);
     }
 
     /**

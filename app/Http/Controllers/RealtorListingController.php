@@ -153,7 +153,7 @@ class RealtorListingController extends Controller {
         $listing = Listing::withTrashed()->findOrFail($id);
 
         if (Auth::user()->cannot('update', $listing)) {
-            return redirect()->route('realtor.listing.index')->with('success', 'Whoops.. You are not authorized to update this llisting');
+            return redirect()->route('realtor.listing.index')->with('success', 'Whoops.. You are not authorized to update this listing');
         }
 
         $listing->update([

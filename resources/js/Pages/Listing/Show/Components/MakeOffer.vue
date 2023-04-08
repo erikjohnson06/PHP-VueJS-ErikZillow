@@ -22,7 +22,7 @@
                     class="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer mt-2"
                     />
 
-                <button type="submit" class="button-outline w-full mt-2 text-sm">Make an Offer</button>
+                <button type="submit" class="button-outline w-full mt-2 text-sm" dusk="make-an-offer">Make an Offer</button>
 
                 {{ form.errors.amount }}
             </form>

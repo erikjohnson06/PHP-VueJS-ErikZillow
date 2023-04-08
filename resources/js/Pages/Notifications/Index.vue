@@ -24,7 +24,9 @@
                       :href="route('notification.update', {notification: notification.id})"
                       as="button"
                       method="PUT"
-                      class="button-outline text-xs font-medium uppercase">
+                      class="button-outline text-xs font-medium uppercase"
+                      dusk="notification_update"
+                      >
                 Mark as Read
                 </Link>
             </div>

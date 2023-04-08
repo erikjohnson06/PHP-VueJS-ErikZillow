@@ -7,6 +7,7 @@
                     type="text"
                     v-model.number="form.beds"
                     class="input"
+                    dusk="beds"
                     />
                 <div v-if="form.errors.beds" class="input-error">
                     {{ form.errors.beds }}
@@ -19,6 +20,7 @@
                     type="text"
                     v-model.number="form.baths"
                     class="input"
+                    dusk="baths"
                     />
                 <div v-if="form.errors.baths" class="input-error">
                     {{ form.errors.baths }}
@@ -31,6 +33,7 @@
                     type="text"
                     v-model.number="form.area"
                     class="input"
+                    dusk="area"
                     />
 
                 <div v-if="form.errors.area" class="input-error">
@@ -44,6 +47,7 @@
                     type="text"
                     v-model="form.address"
                     class="input"
+                    dusk="address"
                     />
                 <div v-if="form.errors.address" class="input-error">
                     {{ form.errors.address }}
@@ -56,6 +60,7 @@
                     type="text"
                     v-model="form.city"
                     class="input"
+                    dusk="city"
                     />
                 <div v-if="form.errors.city" class="input-error">
                     {{ form.errors.city }}
@@ -67,6 +72,7 @@
                 <select
                     v-model="form.state"
                     class="input"
+                    dusk="state"
                     >
                     <option value="">---</option>
                     <option value="TN">TN</option>
@@ -88,6 +94,7 @@
                     type="text"
                     v-model="form.zip"
                     class="input"
+                    dusk="zip"
                     />
 
                 <div v-if="form.errors.zip" class="input-error">
@@ -101,6 +108,7 @@
                     type="text"
                     v-model.number="form.price"
                     class="input"
+                    dusk="price"
                     />
 
                 <div v-if="form.errors.price" class="input-error">
@@ -114,6 +122,7 @@
                     type="text"
                     v-model="form.comments"
                     class="input"
+                    dusk="notes"
                     />
 
                 <div v-if="form.errors.comments" class="input-error">
@@ -122,7 +131,7 @@
             </div>
 
             <div class="col-span-6">
-                <button type="submit" :disabled="form.processing" class="button-primary">
+                <button type="submit" :disabled="form.processing" class="button-primary" dusk="create-listing">
                     Create
                 </button>
             </div>

@@ -12,10 +12,12 @@ use Illuminate\Support\Carbon;
 class RealtorListingAcceptOfferController extends Controller {
 
     /**
-     * @param Offer $offer
+     * @param int $id
      * @return RedirectResponse
      */
-    public function __invoke(Offer $offer) : RedirectResponse {
+    public function __invoke(int $id) : RedirectResponse {
+
+        $offer = Offer::findOrFail($id);
 
         $listing = $offer->listing;
 

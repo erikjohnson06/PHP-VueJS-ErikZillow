@@ -33,6 +33,7 @@
                     class="button-outline text-xs font-medium"
                     as="button"
                     method="PUT"
+                    dusk="accept-button"
                     >
                 Accept
                 </Link>
