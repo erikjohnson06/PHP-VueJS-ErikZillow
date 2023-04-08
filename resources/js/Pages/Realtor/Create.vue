@@ -122,7 +122,7 @@
                     type="text"
                     v-model="form.comments"
                     class="input"
-                    dusk="notes"
+                    dusk="comments"
                     />
 
                 <div v-if="form.errors.comments" class="input-error">

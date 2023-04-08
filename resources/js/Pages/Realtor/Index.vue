@@ -49,7 +49,9 @@
                                 class="button-secondary text-xs font-medium"
                                 :href="route('realtor.listing.destroy', {listing : item.id})"
                                 method="delete"
-                                as="button">
+                                as="button"
+                                dusk="delete-listing"
+                                >
                             Unpublish
                             </Link>
                         </div>
@@ -60,7 +62,9 @@
                                 class="button-primary text-xs font-medium"
                                 :href="route('realtor.listing.restore', {listing : item.id})"
                                 method="put"
-                                as="button">
+                                as="button"
+                                dusk="restore-listing"
+                                >
                             Publish
                             </Link>
 
